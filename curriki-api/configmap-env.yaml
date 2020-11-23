@@ -1,0 +1,78 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: curriki-api
+data:
+  .env: |-
+    APP_NAME=Curriki
+    APP_ENV=local
+    APP_KEY=
+    APP_DEBUG=true
+    APP_URL=/api
+
+    FRONT_END_URL=
+
+    LOG_CHANNEL=stack
+
+    DB_CONNECTION=pgsql
+    DB_HOST=postgresql-master.mike-postgres.svc.cluster.local
+    DB_PORT=5432
+    DB_DATABASE=currikidb
+    DB_USERNAME=pguser
+    DB_PASSWORD=
+
+    BROADCAST_DRIVER=redis
+    CACHE_DRIVER=file
+    SESSION_DRIVER=file
+    SESSION_LIFETIME=120
+
+    QUEUE_CONNECTION=database
+    REDIS_HOST=currikidb-headless.dev-redis.svc.cluster.local
+    REDIS_PASSWORD=
+    REDIS_PORT=17716
+    REDIS_PREFIX=
+
+    MAIL_MAILER=smtp
+    MAIL_HOST=fake-smtp-server
+    MAIL_PORT=1025
+    MAIL_ENCRYPTION=null
+    MAIL_FROM_ADDRESS=
+    MAIL_FROM_NAME="${APP_NAME}"
+
+    AWS_ACCESS_KEY_ID=
+    AWS_SECRET_ACCESS_KEY=
+    AWS_DEFAULT_REGION=us-east-1
+    AWS_BUCKET=
+
+    PUSHER_APP_ID=
+    PUSHER_APP_KEY=
+    PUSHER_APP_SECRET=
+    PUSHER_APP_CLUSTER=mt1
+
+    MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+    MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+    MATTERMOST_SERVER=default
+    MATTERMOST_HOST=
+    MATTERMOST_LOGIN=
+    MATTERMOST_PASSWORD=
+    MATTERMOST_DEFAULT_TEAM_ID=
+
+    GAPI_CLASSROOM_CREDENTIALS=
+    GAPI_CLIENT_ID=
+
+    CURRIKI_TSUGI_HOST=
+
+    ELASTIC_HOST=my-escluster-es-http.dev-es.svc.cluster.local
+    ELASTIC_USER=elastic-internal
+    ELASTIC_PASS=
+    ELASTIC_MIGRATIONS_DIRECTORY=elastic/migrations
+    SCOUT_DRIVER=elastic
+
+    DEFAULT_THUMB_URL=
+
+    CURRIKI_DEMO_EMAIL=
+    XAPI_VERSION=1.0.3
+    LRS_USERNAME=
+    LRS_PASSWORD=
+    LRS_REMOTE_URL=
