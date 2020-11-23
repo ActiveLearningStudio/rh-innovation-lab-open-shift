@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o openshift/
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: tsugi-db
+  name: tsugi-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: tsugi-db
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -o openshift/
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: tsugi-db
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_DATABASE
+          value: tsugi
+        - name: MYSQL_PASSWORD
+          value: ltipassword
+        - name: MYSQL_ROOT_PASSWORD
+          value: tsugi_root_pw
+        - name: MYSQL_USER
+          value: ltiuser
+        image: mysql:5.7
+        imagePullPolicy: ""
+        name: tsugi-db
+        ports:
+        - containerPort: 3306
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null

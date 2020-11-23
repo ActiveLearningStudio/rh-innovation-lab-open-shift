@@ -1,0 +1,17 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: tsugi-web
+  labels:
+    app: tsugi-web
+    app.kubernetes.io/component: tsugi-web
+    app.kubernetes.io/instance: tsugi-web
+    app.kubernetes.io/part-of: curriki
+spec:
+  to:
+    kind: Service
+    name: tsugi-web
+    weight: 100
+  port:
+    targetPort: 9999-tcp
+  wildcardPolicy: None
