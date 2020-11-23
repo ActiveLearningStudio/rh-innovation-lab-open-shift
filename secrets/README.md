@@ -37,11 +37,15 @@ wget https://github.com/bitnami-labs/sealed-secrets/releases/download/$release/k
 sudo install -m 755 kubeseal-$GOOS-$GOARCH /usr/local/bin/kubeseal
 ```
 
-Test
+Example
 ```bash
-kubeseal < argocd-env-secret.yaml > argocd-env-secret-sealedsecret.yaml
-oc delete secret argocd-env
-oc apply -f argocd-env-secret-sealedsecret.yaml
+oc create secret generic curriki-api --from-file=.env=./env
+oc get secret/curriki-api -o yaml > curriki-api-secret.yaml
+kubeseal --controller-name=sealed-secrets --controller-namespace=labs-ci-cd < curriki-api-secret.yaml > curriki-api-sealedsecret.yaml
+oc delete secret/curriki-api
+oc apply -f curriki-api-sealedsecret.yaml
+rm -f curriki-api-secret.yaml
+oc set volume deployment/curriki-api --add --overwrite -t secret --secret-name=curriki-api --name=curriki-api-env --mount-path=/var/www/html/.env --sub-path=.env --overwrite
 ```
 
 Regen all secrets for new deployment
