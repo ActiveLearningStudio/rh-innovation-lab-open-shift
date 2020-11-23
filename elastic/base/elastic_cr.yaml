@@ -1,0 +1,36 @@
+---
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: my-escluster
+spec:
+  auth: {}
+  http:
+    service:
+      metadata:
+        creationTimestamp: null
+      spec: {}
+    tls:
+      selfSignedCertificate:
+        disabled: true
+  nodeSets:
+  - config:
+      node.attr.attr_name: attr_value
+      node.roles:
+      - master
+      - data
+      node.store.allow_mmap: false
+    count: 3
+    name: default
+    podTemplate:
+      spec:
+        containers:
+        - name: elasticsearch
+          resources:
+            limits:
+              cpu: 2
+              memory: 4Gi
+            requests:
+              cpu: 1
+              memory: 4Gi
+  version: 7.9.3

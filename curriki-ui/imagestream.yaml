@@ -1,0 +1,12 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: curriki-ui
+    app.kubernetes.io/component: curriki-ui
+    app.kubernetes.io/instance: curriki-ui
+    app.kubernetes.io/part-of: curriki
+  name: curriki-ui
+spec:
+  lookupPolicy:
+    local: false

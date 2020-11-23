@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: curriki-ui
+    app.kubernetes.io/component: curriki-ui
+    app.kubernetes.io/instance: curriki-ui
+    app.kubernetes.io/part-of: curriki
+  name: curriki-ui
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: curriki-ui
+    deploymentconfig: curriki-ui
+  sessionAffinity: None
+  type: ClusterIP

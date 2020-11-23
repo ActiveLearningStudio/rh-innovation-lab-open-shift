@@ -1,0 +1,23 @@
+---
+apiVersion: app.redislabs.com/v1
+kind: RedisEnterpriseCluster
+metadata:
+  name: rec
+  namespace: dev-redis
+spec:
+  nodes: 3
+  persistentSpec:
+    enabled: true
+  uiServiceType: ClusterIP
+  username: demo@curriki.com
+  redisEnterpriseNodeResources:
+    limits:
+      cpu: 1
+      memory: 2Gi
+    requests:
+      cpu: 200m
+      memory: 2Gi
+  redisEnterpriseImageSpec:
+    imagePullPolicy: IfNotPresent
+    repository: redislabs/redis
+    versionTag: 6.0.8-28.rhel7-openshift

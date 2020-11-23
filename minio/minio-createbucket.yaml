@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-setup
+  labels:
+    component: minio
+spec:
+  template:
+    metadata:
+      name: minio-setup
+    spec:
+      restartPolicy: OnFailure
+      volumes:
+        - name: config
+          emptyDir: {}
+      containers:
+        - name: mc
+          image: minio/mc:latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - "mc --config-dir=/config config host add curriki http://curriki-s3:9000 minio minio123 && mc --config-dir=/config mb -p curriki/curriki  && mc --config-dir=/config  policy set public curriki/curriki"
+          volumeMounts:
+            - name: config
+              mountPath: "/config"

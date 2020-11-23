@@ -1,0 +1,10 @@
+apiVersion: v2
+name: curriki-api
+description: A Helm chart for installing Curriki API Studio
+type: application
+version: 0.0.1
+appVersion: 0.0.1
+home: GITHUB LOCATION FOR THE CHART
+maintainers:
+  - name: eformat
+  - name: masoodfaisal

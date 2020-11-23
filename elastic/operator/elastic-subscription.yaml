@@ -1,0 +1,12 @@
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ospid-f28bedc0-7871-47a2-9d73-beae3fb16678
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: ospid-f28bedc0-7871-47a2-9d73-beae3fb16678
+  source: certified-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: ospid-f28bedc0-7871-47a2-9d73-beae3fb16678.v1.3.0

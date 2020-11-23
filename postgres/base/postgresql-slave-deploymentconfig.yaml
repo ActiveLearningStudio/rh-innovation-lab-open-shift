@@ -1,0 +1,93 @@
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: pg-replica
+    app.kubernetes.io/component: pg-replica
+    app.kubernetes.io/instance: pg-replica
+  name: postgresql-slave
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    name: postgresql-slave
+  strategy:
+    activeDeadlineSeconds: 21600
+    recreateParams:
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: postgresql-slave
+    spec:
+      containers:
+      - args:
+        - run-postgresql-slave
+        env:
+        - name: POSTGRESQL_MASTER_SERVICE_NAME
+          value: postgresql-master
+        - name: POSTGRESQL_MASTER_USER
+          value: master
+        - name: POSTGRESQL_MASTER_PASSWORD
+          value: fkNrPS7HaWWU
+        - name: POSTGRESQL_USER
+          value: pguser
+        - name: POSTGRESQL_PASSWORD
+          value: password
+        - name: POSTGRESQL_DATABASE
+          value: currikidb
+        image: ' '
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          exec:
+            command:
+            - /usr/libexec/check-container
+            - --live
+          failureThreshold: 3
+          initialDelaySeconds: 120
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 10
+        name: postgresql-slave
+        ports:
+        - containerPort: 5432
+          protocol: TCP
+        readinessProbe:
+          exec:
+            command:
+            - /usr/libexec/check-container
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/lib/pgsql/data
+          name: postgresql-data
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: postgresql-data
+  test: false
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - postgresql-slave
+      from:
+        kind: ImageStreamTag
+        name: postgresql:10-el8
+        namespace: openshift
+      lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/openshift/postgresql:10-el8      
+    type: ImageChange
+  - type: ConfigChange

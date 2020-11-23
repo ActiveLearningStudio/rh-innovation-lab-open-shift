@@ -1,0 +1,24 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: curriki-api
+  labels:
+    app: curriki-api
+    app.kubernetes.io/component: curriki-api
+    app.kubernetes.io/instance: curriki-api
+    app.kubernetes.io/part-of: curriki
+spec:
+  ports:
+    - name: 8000-tcp
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+    - name: 6001-tcp
+      protocol: TCP
+      port: 6001
+      targetPort: 6001
+  selector:
+    app: curriki-api
+    deploymentconfig: curriki-api
+  type: ClusterIP
+  sessionAffinity: None

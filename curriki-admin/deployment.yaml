@@ -1,0 +1,56 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest","namespace":"awesome-curriki"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"}]
+  name: curriki-admin
+  labels:
+    app: curriki-admin
+    app.kubernetes.io/component: curriki-admin
+    app.kubernetes.io/instance: curriki-admin
+    app.kubernetes.io/part-of: curriki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curriki-admin
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: curriki-admin
+        deploymentconfig: curriki-admin
+    spec:
+      volumes:
+        - name: admin-storage
+          emptyDir: {}
+        - name: curriki-admin-env
+          configMap:
+            name: curriki-admin
+            defaultMode: 420
+      containers:
+        - name: curriki-admin
+          image: ' '
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: admin-storage
+              mountPath: /var/www/html/storage
+            - name: curriki-admin-env
+              mountPath: /var/www/html/.env
+              subPath: .env
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

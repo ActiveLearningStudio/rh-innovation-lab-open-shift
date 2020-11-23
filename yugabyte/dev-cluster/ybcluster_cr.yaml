@@ -1,0 +1,69 @@
+---
+apiVersion: yugabyte.com/v1alpha1
+kind: YBCluster
+metadata:
+  name: my-ybcluster
+  namespace: 
+spec:
+  image:
+    pullPolicy: IfNotPresent
+    repository: docker.io/yugabytedb/yugabyte
+    tag: 2.5.0.0-b2
+  master:
+    use_node_to_node_encryption: false
+    allow_insecure_connections: true
+    enableLoadBalancer: true
+    gflags:
+      - key: default_memory_limit_to_ram_ratio
+        value: '0.85'
+      - key: use_node_to_node_encryption
+        value: 'false'
+      - key: allow_insecure_connections
+        value: 'true'        
+    masterRPCPort: 7100
+    masterUIPort: 7000
+    podManagementPolicy: Parallel
+    replicas: 3
+    resources:
+      limits:
+        cpu: 1
+        memory: 1Gi
+      requests:
+        cpu: 1
+        memory: 1Gi
+    storage:
+      count: 1
+      size: 10Gi
+      storageClass: gp2
+  replicationFactor: 1
+  tls:
+    enabled: false
+  tserver:
+    gflags:
+      - key: default_memory_limit_to_ram_ratio
+        value: '0.85'
+      - key: use_node_to_node_encryption
+        value: 'false'
+      - key: allow_insecure_connections
+        value: 'true'
+    yedisPort: 6379
+    resources:
+      limits:
+        cpu: 1
+        memory: 1Gi
+      requests:
+        cpu: 1
+        memory: 1Gi
+    ycqlPort: 9042
+    tserverUIPort: 9000
+    tserverRPCPort: 9100
+    ysqlPort: 5433
+    podManagementPolicy: Parallel
+    storage:
+      count: 1
+      size: 10Gi
+      storageClass: gp2
+    replicas: 3
+    enableLoadBalancer: true
+  subresources:
+    status: {}

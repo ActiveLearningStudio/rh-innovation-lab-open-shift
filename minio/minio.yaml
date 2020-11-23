@@ -1,0 +1,121 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: curriki-s3
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curriki-s3
+  labels:
+    app: curriki-s3
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+     app: curriki-s3
+  template:
+    metadata:
+      labels:
+        app: curriki-s3
+    spec:
+      containers:
+      - name: minio
+        livenessProbe:
+          httpGet:
+            path: /minio/health/live
+            port: 9000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 10
+        readinessProbe:
+          httpGet:
+            path: /minio/health/ready
+            port: 9000
+            scheme: HTTP
+          initialDelaySeconds: 10
+          timeoutSeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          failureThreshold: 10
+  
+        image: docker.io/minio/minio:latest
+        imagePullPolicy: IfNotPresent
+        resources: {}
+        args:
+        - server
+        - /storage
+        - --config-dir=/config
+        env:
+        - name: MINIO_ACCESS_KEY
+          value: "minio"
+        - name: MINIO_SECRET_KEY
+          value: "minio123"
+        - name: MINIO_PROMETHEUS_AUTH_TYPE
+          value: "public"  
+        - name: MINIO_TRACE
+          value: "true"  
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+        - name: storage
+          mountPath: "/storage"
+        - name: config
+          mountPath: "/config"
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: curriki-s3
+      - name: config
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: curriki-s3
+  labels:
+    app: curriki-s3
+spec:
+  ports:
+    - port: 9000
+      protocol: TCP
+  selector:
+    app: curriki-s3
+  type: ClusterIP
+  sessionAffinity: None
+
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: curriki
+  labels:
+    app: curriki-s3
+  annotations:
+    openshift.io/host.generated: 'true'
+spec:
+  host: null
+  subdomain: ''
+  to:
+    kind: Service
+    name: curriki-s3
+    weight: 100
+  port:
+    targetPort: 9000
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  wildcardPolicy: None
+
+
