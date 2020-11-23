@@ -19,12 +19,12 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: Dockerfile.admin
+      dockerfilePath: Dockerfile.oc
   postCommit: {}
   source:
     type: Git
     git:
-      uri: 'https://github.com/imcoder001/curriki-docker'
+      uri: 'https://github.com/ActiveLearningStudio/ActiveLearningStudio-admin-panel'
     contextDir: /
   triggers:
     - type: Generic

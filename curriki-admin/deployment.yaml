@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"}]
+      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest","namespace":"awesome-curriki"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"}]
   name: curriki-admin
   labels:
     app: curriki-admin

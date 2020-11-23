@@ -20,7 +20,7 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: Dockerfile.api
+      dockerfilePath: Dockerfile.oc
   postCommit: {}
   source:
     type: Git

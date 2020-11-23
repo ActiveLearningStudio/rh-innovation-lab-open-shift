@@ -20,11 +20,11 @@ spec:
   source:
     contextDir: /
     git:
-      uri: https://github.com/imcoder001/curriki-docker
+      uri: https://github.com/ActiveLearningStudio/ActiveLearningStudio-react-client
     type: Git
   strategy:
     dockerStrategy:
-      dockerfilePath: Dockerfile.client
+      dockerfilePath: Dockerfile.oc
     type: Docker
   successfulBuildsHistoryLimit: 5
   triggers:
