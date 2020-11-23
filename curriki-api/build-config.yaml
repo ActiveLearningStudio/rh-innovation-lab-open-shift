@@ -19,6 +19,9 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "curriki-api-base:latest"
       dockerfilePath: Dockerfile.api
   postCommit: {}
   source:

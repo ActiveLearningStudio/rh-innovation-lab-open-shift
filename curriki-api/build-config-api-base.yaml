@@ -24,7 +24,7 @@ spec:
   source:
     type: Git
     git:
-      uri: 'https://github.com/eformat/curriki-docker'
+      uri: 'https://github.com/imcoder001/curriki-docker'
     contextDir: /
   triggers:
     - type: Generic
