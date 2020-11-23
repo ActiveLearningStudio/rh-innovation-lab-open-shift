@@ -37,7 +37,7 @@ wget https://github.com/bitnami-labs/sealed-secrets/releases/download/$release/k
 sudo install -m 755 kubeseal-$GOOS-$GOARCH /usr/local/bin/kubeseal
 ```
 
-Example
+Example to convert configmap contents to a secret. Create file with configmap contents e.g. `env`
 ```bash
 oc create secret generic curriki-api --from-file=.env=./env
 oc get secret/curriki-api -o yaml > curriki-api-secret.yaml
