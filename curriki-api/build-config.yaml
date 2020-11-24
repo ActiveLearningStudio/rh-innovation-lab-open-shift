@@ -19,12 +19,15 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: Dockerfile.oc
+      from:
+        kind: "ImageStreamTag"
+        name: "curriki-api-base:latest"
+      dockerfilePath: Dockerfile.api
   postCommit: {}
   source:
     type: Git
     git:
-      uri: 'https://github.com/ActiveLearningStudio/ActiveLearningStudio-API'
+      uri: 'https://github.com/imcoder001/curriki-docker'
     contextDir: /
   triggers:
     - type: Generic
