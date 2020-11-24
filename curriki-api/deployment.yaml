@@ -26,13 +26,13 @@ spec:
           persistentVolumeClaim:
             claimName: h5p-storage
         - name: curriki-api-env
-          configMap:
-            name: curriki-api
+          secret:
             defaultMode: 420
+            secretName: curriki-api
         - name: curriki-api-echo-server
-          configMap:
-            name: curriki-api-echo-server
+          secret:
             defaultMode: 420
+            secretName: curriki-api-echo-server
       initContainers:
         - name: init-container
           image: ' '
