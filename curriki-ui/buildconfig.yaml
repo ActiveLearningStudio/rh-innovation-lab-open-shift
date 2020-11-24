@@ -1,39 +1,42 @@
-apiVersion: build.openshift.io/v1
 kind: BuildConfig
+apiVersion: build.openshift.io/v1
 metadata:
+  name: curriki-api
   labels:
-    app: curriki-ui
-    app.kubernetes.io/component: curriki-ui
-    app.kubernetes.io/instance: curriki-ui
+    app: curriki-api
+    app.kubernetes.io/component: curriki-api
+    app.kubernetes.io/instance: curriki-api
     app.kubernetes.io/part-of: curriki
-  name: curriki-ui
 spec:
-  failedBuildsHistoryLimit: 5
   nodeSelector: null
   output:
     to:
       kind: ImageStreamTag
-      name: curriki-ui:latest
-  postCommit: {}
+      name: 'curriki-api:latest'
   resources: {}
-  runPolicy: Serial
-  source:
-    contextDir: /
-    git:
-      uri: https://github.com/ActiveLearningStudio/ActiveLearningStudio-react-client
-    type: Git
-  strategy:
-    dockerStrategy:
-      dockerfilePath: Dockerfile.oc
-    type: Docker
   successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "curriki-api-base:latest"
+      dockerfilePath: Dockerfile.api
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/imcoder001/curriki-docker'
+    contextDir: /
   triggers:
-  - generic:
-      secretReference:
-        name: curriki-ui-generic-webhook-secret
-    type: Generic
-  - github:
-      secretReference:
-        name: curriki-ui-github-webhook-secret
-    type: GitHub
-  - type: ConfigChange
+    - type: Generic
+      generic:
+        secretReference:
+          name: curriki-docker-7-generic-webhook-secret
+    - type: GitHub
+      github:
+        secretReference:
+          name: curriki-docker-7-github-webhook-secret
+    - type: ConfigChange
+  runPolicy: Serial
