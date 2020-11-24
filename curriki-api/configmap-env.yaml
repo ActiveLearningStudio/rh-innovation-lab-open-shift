@@ -14,8 +14,10 @@ data:
 
     LOG_CHANNEL=stack
 
-    DB_CONNECTION=pgsql
+    DB_CONNECTION=pgsql-cluster
     DB_HOST=postgresql-master.mike-postgres.svc.cluster.local
+    DB_READ_HOST=postgresql-slave
+    DB_WRITE_HOST=postgresql-master
     DB_PORT=5432
     DB_DATABASE=currikidb
     DB_USERNAME=pguser
