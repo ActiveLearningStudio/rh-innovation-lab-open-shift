@@ -1,0 +1,9 @@
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: openshift-user-workload-monitoring-nzszg
+  namespace: openshift-user-workload-monitoring
+spec:
+  targetNamespaces:
+  - openshift-user-workload-monitoring

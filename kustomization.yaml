@@ -3,6 +3,7 @@ kind: Kustomization
 
 bases:
 - secrets
+- monitoring
 - postgres
 - redis
 - mysql
