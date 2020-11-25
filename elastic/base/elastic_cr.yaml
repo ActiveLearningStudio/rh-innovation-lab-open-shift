@@ -28,9 +28,9 @@ spec:
         - name: elasticsearch
           resources:
             limits:
-              cpu: 2
-              memory: 4Gi
-            requests:
               cpu: 1
-              memory: 4Gi
+              memory: 2Gi
+            requests:
+              cpu: 200m
+              memory: 2Gi
   version: 7.9.3
