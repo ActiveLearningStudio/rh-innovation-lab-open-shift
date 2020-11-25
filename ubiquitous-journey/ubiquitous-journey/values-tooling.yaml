@@ -228,3 +228,4 @@ applications:
       - /spec/template/spec/containers/1/image
       - /spec/template/spec/containers/2/image
       - /spec/triggers/0/imageChangeParams/lastTriggeredImage
+      - /spec/triggers/1/imageChangeParams/lastTriggeredImage
