@@ -8,10 +8,10 @@ data:
     APP_ENV=local
     APP_KEY=base64:RtLARzJDyirX8KABkQTkotkzE/aSgsFccC8jGqqg0Tg=
     APP_DEBUG=true
-    APP_URL=http://curriki-admin-mike-api.apps.curriki.apac-1.rht-labs.com
-    API_URL=http://curriki-ui-mike-api.apps.curriki.apac-1.rht-labs.com/api/api
-    FRONT_END_URL=http://curriki-ui-mike-api.apps.curriki.apac-1.rht-labs.com
-    API_IMG_URL=http://curriki-ui-mike-api.apps.curriki.apac-1.rht-labs.com/api
+    APP_URL=http://curriki-admin-awesome-curriki.apps.curriki.apac-1.rht-labs.com
+    API_URL=http://curriki-ui-awesome-curriki.apps.curriki.apac-1.rht-labs.com/api/api
+    FRONT_END_URL=http://curriki-ui-awesome-curriki.apps.curriki.apac-1.rht-labs.com
+    API_IMG_URL=http://curriki-ui-awesome-curriki.apps.curriki.apac-1.rht-labs.com/api
     LOG_CHANNEL=stack
 
     DB_CONNECTION=null
