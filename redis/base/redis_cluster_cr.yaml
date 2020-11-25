@@ -11,7 +11,7 @@ spec:
   username: demo@curriki.com
   redisEnterpriseNodeResources:
     limits:
-      cpu: 400m
+      cpu: 1
       memory: 2Gi
     requests:
       cpu: 200m
