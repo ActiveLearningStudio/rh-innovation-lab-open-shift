@@ -5,7 +5,6 @@ metadata:
   labels:
     operators.coreos.com/redis-enterprise-operator-cert.dev-redis: ""
   name: redis-enterprise-operator-cert
-  namespace: dev-redis
 spec:
   channel: preview
   installPlanApproval: Automatic
