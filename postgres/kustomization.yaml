@@ -4,5 +4,5 @@ kind: Kustomization
 
 bases:
 #- dev-cluster
-#- labs-dev
+- labs-dev
 - labs-test
