@@ -3,11 +3,10 @@ kind: Job
 metadata:
   name: api-database-load
 spec:
-  ttlSecondsAfterFinished: 100
   template:
     spec:
       initContainers:
-      - name: wait-fror-database
+      - name: wait-for-database
         image: quay.io/eformat/curriki-database-load:latest
         command: ['sh', '-c', "until nslookup postgresql-master.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for postgres-master service; sleep 3; done"]    
       containers:
