@@ -6,3 +6,6 @@ namespace: labs-dev
 
 bases:
 - ../operator-base
+
+resources:
+- operatorgroup.yaml

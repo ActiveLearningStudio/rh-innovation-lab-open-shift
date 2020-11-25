@@ -1,0 +1,9 @@
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  generateName: dev-redis-
+  name: dev-redis-x5v8h
+spec:
+  targetNamespaces:
+  - labs-test

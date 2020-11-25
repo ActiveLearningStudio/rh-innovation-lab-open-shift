@@ -4,4 +4,4 @@ kind: Kustomization
 
 resources:
 - redis-subscription.yaml
-- operatorgroup.yaml
+

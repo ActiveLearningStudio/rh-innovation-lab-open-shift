@@ -6,3 +6,6 @@ namespace: dev-redis
 
 bases:
 - ../operator-base
+
+resources:
+- operatorgroup.yaml
