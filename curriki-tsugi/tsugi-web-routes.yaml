@@ -1,6 +1,8 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
+  # annotations:
+  #   haproxy.router.openshift.io/rewrite-target: /tsugi
   name: tsugi-web
   labels:
     app: tsugi-web

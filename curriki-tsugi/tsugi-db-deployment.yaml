@@ -7,6 +7,10 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: tsugi-db
+    app: tsugi-db
+    app.kubernetes.io/component: tsugi-db
+    app.kubernetes.io/instance: tsugi-db
+    app.kubernetes.io/part-of: curriki
   name: tsugi-db
 spec:
   replicas: 1

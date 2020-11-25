@@ -7,6 +7,10 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: tsugi-web
+    app: tsugi-db
+    app.kubernetes.io/component: tsugi-db
+    app.kubernetes.io/instance: tsugi-db
+    app.kubernetes.io/part-of: curriki
   name: tsugi-web
 spec:
   replicas: 1
@@ -23,19 +27,39 @@ spec:
       labels:
         io.kompose.service: tsugi-web
     spec:
+      volumes:
+        - name: curriki-tsugi
+          persistentVolumeClaim:
+            claimName: curriki-tsugi
+        - name: config-php-vol
+          configMap:
+            name: curriki-tsugi
+            defaultMode: 420
+      # initContainers:
+      #   - name: init-container
+      #     image: image-registry.openshift-image-registry.svc:5000/openshift/tools
+      #     command: [ "/bin/bash", "-c", "rm -rf /var/www/html/mod/curriki/* && git clone https://github.com/ActiveLearningStudio/curriki-tsugi-module.git /tmp/curriki && mkdir /var/www/html/mod/curriki && mv /tmp/curriki/* /var/www/html/mod/curriki/" ]
+      #     volumeMounts:
+      #     - mountPath: /var/www/html/mod/curriki
+      #       name: curriki-tsugi
       containers:
-      - args:
-        - bash
-        - -c
-        - ./tsugi/docker-compose-init.sh
-        image: quay.io/curriki/tsugi-web
-        imagePullPolicy: "Always"
-        name: tsugi-web
-        ports:
-        - containerPort: 9999
-        resources: {}
-        stdin: true
-        tty: true
+        - args:
+          - bash
+          - -c
+          - ./docker-compose-init.sh
+          image: quay.io/curriki/tsugi-web
+          imagePullPolicy: "Always"
+          name: tsugi-web
+          ports:
+          - containerPort: 9999
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - name: curriki-tsugi
+              mountPath: /var/www/html/mod/curriki
+            - name: config-php-vol
+              mountPath: /var/www/html/config.php
+              subPath: config.php
       restartPolicy: Always
       serviceAccountName: ""
-      volumes: null

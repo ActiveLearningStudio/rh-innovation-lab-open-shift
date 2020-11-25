@@ -7,6 +7,9 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: tsugi-web
+    app.kubernetes.io/component: tsugi-web
+    app.kubernetes.io/instance: tsugi-web
+    app.kubernetes.io/part-of: curriki
   name: tsugi-web
 spec:
   ports:
