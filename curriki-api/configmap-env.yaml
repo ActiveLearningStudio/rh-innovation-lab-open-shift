@@ -30,7 +30,7 @@ data:
 
     QUEUE_CONNECTION=database
     REDIS_HOST=currikidb-headless.dev-redis.svc.cluster.local
-    REDIS_PASSWORD=HJCYWYhQ
+    REDIS_PASSWORD=jIhJ0ggo
     REDIS_PORT=17716
     REDIS_PREFIX=
     
