@@ -8,4 +8,4 @@ metadata:
     app.kubernetes.io/instance: pg-replica
   name: postgresql-slave
 spec:
-  replicas: 3
+  replicas: 2
