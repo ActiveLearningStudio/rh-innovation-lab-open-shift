@@ -11,6 +11,11 @@ while true; do
     echo " 🏗 no schema table found - creating 🏗";
     psql -h ${DB_SERVICE} -p ${DB_PORT} -d ${DB_NAME} -c "CREATE ROLE curriki;"
     psql -h ${DB_SERVICE} -p ${DB_PORT} -d ${DB_NAME} -f /opt/app-root/src/studio-initial-db.sql
+    if [ $? -eq 0 ]; then
+      exit 0
+    fi
+  else
+    echo " 🏗 schema table found - exiting 🏗";
     exit 0
   fi
   sleep 5
