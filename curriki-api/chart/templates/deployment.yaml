@@ -3,7 +3,8 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   annotations:
-    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api\")].image"},{"from":{"kind":"ImageStreamTag","name":"curriki-api:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"laravel-echo-server\")].image"},{"from":{"kind":"ImageStreamTag","name":"curriki-api:latest"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"},{"from":{"kind":"ImageStreamTag","name":"curriki-api:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"artisan-queue-worker\")].image"}]'
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api-fpm.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api-fpm\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api-fpm.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api-fpm-prometheus\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"laravel-echo-server\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"artisan-queue-worker\")].image"}]
   name: {{ include "curriki-api.fullname" . }}
   labels:
     {{- include "curriki-api.labels" . | nindent 4 }}
@@ -38,7 +39,7 @@ spec:
             name: h5p-storage
       containers:
         - name: curriki-api-fpm
-          image: 'quay.io/masood_faisal/curriki-api-fpm:0.0.1'
+          image: ' '
           resources: { }
           volumeMounts:
             - name: h5p-storage
@@ -53,7 +54,7 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: Always
         - name: curriki-api-fpm-prometheus
-          image: 'quay.io/masood_faisal/curriki-api-fpm:0.0.1'
+          image: ' '
           resources: { }
           command: ["/bin/sh", "-c", "/var/www/html/php-fpm-exporter.linux.amd64 --addr 127.0.0.1:8888 --fastcgi tcp://127.0.0.1:9999/status"]
           volumeMounts:
