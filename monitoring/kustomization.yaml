@@ -8,4 +8,5 @@ resources:
 - operatorgroup.yaml
 - grafana-subscription.yaml
 - grafana-cr.yaml
+- grafana-fpm-dashboard.yaml
 #- grafana-ds.yaml
