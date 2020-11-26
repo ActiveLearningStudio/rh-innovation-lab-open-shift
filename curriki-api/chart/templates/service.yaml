@@ -1,0 +1,25 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ include "curriki-api.fullname" . }}
+  labels:
+    {{- include "curriki-api.labels" . | nindent 4 }}
+spec:
+  ports:
+    - name: 8000-tcp
+      protocol: TCP
+      port: 8000
+      targetPort: 8000
+    - name: 6001-tcp
+      protocol: TCP
+      port: 6001
+      targetPort: 6001
+    - name: 8888-prom
+      protocol: TCP
+      port: 8888
+      targetPort: 8888
+  selector:
+    {{- include "curriki-api.selectorLabels" . | nindent 4 }}
+  sessionAffinity: None
+  type: ClusterIP
