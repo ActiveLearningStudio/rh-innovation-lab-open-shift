@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: prometheus-postgresql-monitor
+  name: prometheus-postgresql-monitor
+spec:
+  endpoints:
+    - interval: 30s
+      port: 9187-tcp
+      scheme: http
+      path: /metrics
+  selector:
+    matchLabels:
+      app: curriki-postgres-exporter
