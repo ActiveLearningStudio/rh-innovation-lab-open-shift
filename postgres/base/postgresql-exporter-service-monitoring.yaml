@@ -13,4 +13,3 @@ spec:
   selector:
     matchLabels:
       app: curriki-postgres-exporter
-      deploymentconfig: curriki-postgres-exporter
