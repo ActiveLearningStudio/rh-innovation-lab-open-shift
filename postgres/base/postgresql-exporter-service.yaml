@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: curriki-postgres-exporter
+  labels:
+    app: curriki-postgres-exporter
+    app.kubernetes.io/component: curriki-postgres-exporter
+    app.kubernetes.io/instance: curriki-postgres-exporter
+    app.openshift.io/runtime-version: latest
+spec:
+  ports:
+    - name: 9187-tcp
+      protocol: TCP
+      port: 9187
+      targetPort: 9187
+  selector:
+    app: curriki-postgres-exporter
+    deploymentconfig: curriki-postgres-exporter
+  type: ClusterIP
+  sessionAffinity: None

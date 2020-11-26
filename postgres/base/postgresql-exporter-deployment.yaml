@@ -1,0 +1,49 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: curriki-postgres-exporter
+  labels:
+    app: curriki-postgres-exporter
+    app.kubernetes.io/component: curriki-postgres-exporter
+    app.kubernetes.io/instance: curriki-postgres-exporter
+    app.openshift.io/runtime-namespace: awesome-curriki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curriki-postgres-exporter
+  template:
+    metadata:
+      labels:
+        app: curriki-postgres-exporter
+        deploymentconfig: curriki-postgres-exporter
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+    spec:
+      containers:
+        - name: curriki-postgres-exporter
+          image: >-
+            wrouesnel/postgres_exporter@sha256:429d1bb0b063d7aa38b792f95663d8452209d5e178b090d8a7f2f7991d2ba1af
+          ports:
+            - containerPort: 9187
+              protocol: TCP
+          env:
+            - name: DATA_SOURCE_NAME
+              value: >-
+                postgresql://pguser:password@postgresql-master.mike-postgres.svc.cluster.local:5432/currikidb?sslmode=disable
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
