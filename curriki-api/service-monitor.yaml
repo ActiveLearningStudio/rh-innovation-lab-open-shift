@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: prometheus-fpm-monitor
+  name: prometheus-fpm-monitor
+spec:
+  endpoints:
+    - interval: 30s
+      port: 8888-prom
+      scheme: http
+      path: /metrics
+  selector:
+    matchLabels:
+      app: curriki-api
