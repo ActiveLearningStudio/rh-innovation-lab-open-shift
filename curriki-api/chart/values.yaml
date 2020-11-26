@@ -1,0 +1,35 @@
+build_git_url: https://github.com/imcoder001/curriki-docker
+
+# OpenShift objects
+route: true
+replicas: 1
+image_repository: quay.io
+image_name: curriki-api
+image_namespace: curriki
+image_version: latest
+
+# application values
+api_key: base64:akI9wvojL6dPQZ8N6gZ5jfXPb4b0OeZnI57TCKE5EXg=
+
+db_connection: pgsql-cluster
+db_host: postgresql-master.mike-postgres.svc.cluster.local
+db_read_host: postgresql-slave
+db_write_host: postgresql-master
+db_port: 5432
+db_database: currikidb
+db_username: pguser
+db_password: password
+
+redis_host: currikidb-headless.dev-redis.svc.cluster.local
+redis_password: jIhJ0ggo
+redis_port: 17716
+
+mail_host: smtp.mailtrap.io
+mail_port: 2525
+mail_from_address: info@refactored.curriki.org
+
+elastic_host: my-escluster-es-http.dev-es.svc.cluster.local
+elastic_user: elastic-internal
+elastic_pass: Fcn04803zyQcMfE7i4Vs6Y58
+
+curriki_demo_email: demo@currikistudio.org

@@ -1,0 +1,20 @@
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: {{ include "curriki-api.fullname" . }}
+  labels:
+    {{- include "curriki-api.labels" . | nindent 4 }}
+spec:
+  lookupPolicy:
+    local: false
+---
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: {{ include "curriki-api-base.fullname" . }}
+  labels:
+    {{- include "curriki-api.labels" . | nindent 4 }}
+spec:
+  lookupPolicy:
+    local: false
