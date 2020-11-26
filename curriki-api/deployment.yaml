@@ -42,7 +42,7 @@ spec:
             name: h5p-storage
       containers:
         - name: curriki-api-fpm
-          image: 'quay.io/masood_faisal/curriki-api-fpm:0.0.1'
+          image: 'quay.io/masood_faisal/curriki-api-fpm:0.0.2'
           resources: { }
           volumeMounts:
             - name: h5p-storage
@@ -57,7 +57,7 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: Always
         - name: curriki-api-fpm-prometheus
-          image: 'quay.io/masood_faisal/curriki-api-fpm:0.0.1'
+          image: 'quay.io/masood_faisal/curriki-api-fpm:0.0.2'
           resources: { }
           command: ["/bin/sh", "-c", "/var/www/html/php-fpm-exporter.linux.amd64 --addr 127.0.0.1:8888 --fastcgi tcp://127.0.0.1:9999/status"]
           volumeMounts:

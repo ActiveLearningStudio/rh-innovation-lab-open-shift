@@ -3,7 +3,7 @@ apiVersion: build.openshift.io/v1
 metadata:
   name: curriki-api-fpm
   labels:
-    app: curriki-api-fpm
+    app: curriki-api
     app.kubernetes.io/component: curriki-api
     app.kubernetes.io/instance: curriki-api
     app.kubernetes.io/part-of: curriki
