@@ -2,7 +2,7 @@
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: {{ include "curriki-api-base.fullname" . }}
+  name: {{ include "curriki-api-fpm.fullname" . }}
   labels:
     {{- include "curriki-api.labels" . | nindent 4 }}
 spec:

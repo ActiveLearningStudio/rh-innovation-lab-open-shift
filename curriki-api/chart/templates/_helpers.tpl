@@ -25,11 +25,11 @@ If release name contains chart name it will be used as a full name.
 {{- end -}}
 
 {{- define "curriki-api-base.fullname" -}}
-{{- default "curriki-api-base" -}}
+{{- printf "%s-%s" .Release.Name "curriki-api-base" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{- define "curriki-api-fpm.fullname" -}}
-{{- default "curriki-api-fpm" -}}
+{{- printf "%s-%s" .Release.Name "curriki-api-fpm" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
