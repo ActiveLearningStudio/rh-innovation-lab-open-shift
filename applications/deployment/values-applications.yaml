@@ -1,10 +1,11 @@
 ##############
 # Application Custom Values
 #############
-# pet_battle_api_values: &pet_battle_api_values
-#   fullnameOverride: pet-battle-api # important to use this if want same app name in multiple ns, else release.name used in chart
-#   image_repository: image-registry.openshift-image-registry.svc:5000
-#   image_name: pet-battle-api
+curriki_api_values: &curriki_api_values
+  fullnameOverride: curriki-api # important to use this if want same app name in multiple ns, else release.name used in chart
+  image_repository: image-registry.openshift-image-registry.svc:5000
+  image_name: curriki-api
+
 dev_allowed_destinations: &dev_allowed_destinations # argocd project
   - namespace: labs-dev
     server: https://kubernetes.default.svc
@@ -24,19 +25,18 @@ argocd_projects:
   destinations: *test_allowed_destinations
 
 applications:
-  # pet_battle_api_dev:
-  #   name: pet-battle-api-dev
-  #   enabled: false # overridden by pipeline
-  #   source: https://github.com/eformat/pet-battle-api.git
-  #   source_path: chart
-  #   sync_policy_automated: true
-  #   destination: labs-dev
-  #   source_ref: master # overridden by git revision in pipeline trigger
-  #   values: *pet_battle_api_values
-  #   ignore_differences: *ignore_differences
-  #   project:
-  #     name: pet-battle-dev
-  #     enabled: true
+  curriki_api_dev:
+    name: curriki-api-dev
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-api/chart
+    sync_policy_automated: true
+    destination: labs-dev
+    source_ref: main
+    values: *curriki_api_values
+    project:
+      name: curriki-labs-dev
+      enabled: true
   # pet_battle_api_test:
   #   name: pet-battle-api-test
   #   enabled: false # overridden by pipeline
