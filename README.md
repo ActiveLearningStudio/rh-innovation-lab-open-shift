@@ -2,7 +2,11 @@
 <img src="https://www.curriki.org/wp-content/uploads/2020/11/red-hat-curriki.png">
 <p />
 
-This repository provides all of the OpenShift Configurations and resources needed to deploy Currikistudio.
+This repository provides all of the OpenShift Configurations and resources needed to deploy CurrikiStudio.
+
+## GitOps
+
+[`ubiquitous-journey`](ubiquitous-journey) - GitOps Bootstrap all of our CI/CD
 
 ## Middleware
 
@@ -24,4 +28,8 @@ The following middleware is required to support the CurrikiStudion deployment:
 
 [`curriki-api`](curriki-api) - The CurrikiStudio API Service
 
-[`curriki-ui`](react-ui) - The CurrikiStudio User Interface
+[`curriki-ui`](curriki-ui) - The CurrikiStudio User Interface
+
+[`curriki-admin`](curriki-admin) - The CurrikiStudio Admin Application
+
+[`curriki-tsugi`](curriki-tsugi) - The CurrikiStudio Tsugi LMS Integration
