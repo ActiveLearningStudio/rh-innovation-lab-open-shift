@@ -19,7 +19,7 @@ kustomize build dev-cluster | oc apply -f-
 
 ### Test
 
-Get `user: kibana` password to login to kibana 
+Use `elastic` user and password to login to kibana 
 ```bash
 oc get secret my-escluster-es-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode; echo
  ```
