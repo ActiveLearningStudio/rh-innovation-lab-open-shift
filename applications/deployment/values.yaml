@@ -34,6 +34,13 @@ applications:
     project:
       name: curriki-labs-dev
       enabled: true
+    ignore_differences:
+    - group: apps
+    kind: Deployment
+    jsonPointers:
+        - /spec/template/spec/containers/0/image
+        - /spec/triggers/0/imageChangeParams/lastTriggeredImage
+
   # pet_battle_api_test:
   #   name: pet-battle-api-test
   #   enabled: false # overridden by pipeline
