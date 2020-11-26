@@ -9,3 +9,6 @@ resources:
 - postgresql-slave-service.yaml
 - postgresql-master-deploymentconfig.yaml
 - api-database-load-job.yaml
+- postgresql-exporter-deployment.yaml
+- postgresql-exporter-service-monitoring.yaml
+- postgresql-exporter-service.yaml
