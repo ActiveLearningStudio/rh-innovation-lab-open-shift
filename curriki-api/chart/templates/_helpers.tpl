@@ -28,7 +28,7 @@ If release name contains chart name it will be used as a full name.
 {{- default "curriki-api-base" -}}
 {{- end -}}
 
-{{- define "curriki-api-base.fullname" -}}
+{{- define "curriki-api-fpm.fullname" -}}
 {{- default "curriki-api-fpm" -}}
 {{- end -}}
 
