@@ -105,7 +105,6 @@ metadata:
     openshift.io/host.generated: 'true'
 spec:
   host: null
-  subdomain: ''
   to:
     kind: Service
     name: curriki-s3
