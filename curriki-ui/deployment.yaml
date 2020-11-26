@@ -40,7 +40,7 @@ spec:
         resources: {}
         volumeMounts:
           - name: curriki-ui-env
-            mountPath: /var/app/current/.env
+            mountPath: /opt/app-root/src/.env
             subPath: .env
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
