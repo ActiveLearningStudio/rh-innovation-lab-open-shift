@@ -36,8 +36,8 @@ applications:
       enabled: true
     ignore_differences:
       - group: apps
-      kind: Deployment
-      jsonPointers:
+        kind: Deployment
+        jsonPointers:
           - /spec/template/spec/initContainers/0/image
           - /spec/template/spec/containers/0/image
           - /spec/template/spec/containers/1/image
