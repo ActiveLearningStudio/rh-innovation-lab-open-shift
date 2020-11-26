@@ -11,5 +11,3 @@ resources:
 - namespace.yaml
 
 
-patchesStrategicMerge:
-- postgresql-exporter-deployment.yaml
