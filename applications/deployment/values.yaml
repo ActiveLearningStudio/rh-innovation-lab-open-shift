@@ -45,17 +45,31 @@ applications:
     project:
       name: curriki-labs-dev
       enabled: true
-
-  # pet_battle_api_test:
-  #   name: pet-battle-api-test
-  #   enabled: false # overridden by pipeline
-  #   source: https://github.com/eformat/pet-battle-api.git
-  #   source_path: chart
-  #   sync_policy_automated: true
-  #   destination: labs-test
-  #   source_ref: master # overridden by git revision in pipeline trigger
-  #   values: *pet_battle_api_values
-  #   ignore_differences: *ignore_differences
-  #   project:
-  #     name: pet-battle-test
-  #     enabled: true
+  curriki_api_test:
+    name: curriki-api-test
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-api/chart
+    sync_policy_automated: true
+    destination: labs-test
+    source_ref: main
+    values:
+      fullnameOverride: curriki-api # important to use this if want same app name in multiple ns, else release.name used in chart
+      image_repository: image-registry.openshift-image-registry.svc:5000
+      image_name: curriki-api
+      builds:
+        enabled: false
+    ignore_differences:
+      ignoreDifferences:
+        - group: apps
+          kind: Deployment
+          jsonPointers:
+            - /spec/template/spec/initContainers/0/image
+            - /spec/template/spec/containers/0/image
+            - /spec/template/spec/containers/1/image
+            - /spec/template/spec/containers/2/image
+            - /spec/template/spec/containers/3/image
+            - /spec/template/spec/containers/4/image
+    project:
+      name: curriki-labs-test
+      enabled: true
