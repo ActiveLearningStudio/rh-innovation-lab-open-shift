@@ -1,3 +1,4 @@
+{{- if (eq .Values.builds.enabled true) }}
 ---
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
@@ -26,7 +27,7 @@ spec:
   source:
     type: Git
     git:
-      uri: {{ .Values.build_git_url }}
+      uri: {{ .Values.builds.git_url }}
     contextDir: /
   triggers:
   - generic:
@@ -40,3 +41,4 @@ spec:
   - type: ConfigChange
   - imageChange: {}
     type: ImageChange
+{{ end }}

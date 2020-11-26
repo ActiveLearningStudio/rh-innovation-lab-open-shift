@@ -1,4 +1,6 @@
-build_git_url: https://github.com/imcoder001/curriki-docker
+builds:
+  enabled: false
+  git_url: https://github.com/imcoder001/curriki-docker
 
 # OpenShift objects
 route: true
