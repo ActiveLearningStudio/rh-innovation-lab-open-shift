@@ -1,0 +1,36 @@
+---
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: {{ include "curriki-api-base.fullname" . }}
+  labels:
+    {{- include "curriki-api.labels" . | nindent 4 }}
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: {{ include "curriki-api-fpm.fullname" . }}:{{ .Values.image_version }}
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.api.fpm
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: {{ .Values.build_git_url | quote }}
+    contextDir: /
+  triggers:
+    - type: Generic
+      generic:
+        secretReference:
+          name: curriki-docker-7-generic-webhook-secret
+    - type: GitHub
+      github:
+        secretReference:
+          name: curriki-docker-7-github-webhook-secret
+    - type: ConfigChange
+  runPolicy: Serial
