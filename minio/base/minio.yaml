@@ -94,7 +94,6 @@ spec:
     app: curriki-s3
   type: ClusterIP
   sessionAffinity: None
-
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
@@ -106,7 +105,6 @@ metadata:
     openshift.io/host.generated: 'true'
 spec:
   host: null
-  subdomain: ''
   to:
     kind: Service
     name: curriki-s3
@@ -117,5 +115,3 @@ spec:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
   wildcardPolicy: None
-
-

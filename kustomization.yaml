@@ -8,3 +8,4 @@ bases:
 - redis
 - mysql
 - elastic
+- minio
