@@ -26,7 +26,7 @@ spec:
       volumes:
         - name: curriki-ui-env
           configMap:
-            name: curriki-ui
+            name: {{ include "curriki-ui.fullname" . }}
             defaultMode: 420
       containers:
       - image: ' '
