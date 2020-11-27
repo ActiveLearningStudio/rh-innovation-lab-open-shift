@@ -11,6 +11,6 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    {{- include "curriki-api.selectorLabels" . | nindent 4 }}
+    {{- include "curriki-ui.selectorLabels" . | nindent 4 }}
   sessionAffinity: None
   type: ClusterIP
