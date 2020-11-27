@@ -5,4 +5,4 @@ builds:
 # OpenShift objects
 route: true
 replicas: 1
-
+image_version: latest
