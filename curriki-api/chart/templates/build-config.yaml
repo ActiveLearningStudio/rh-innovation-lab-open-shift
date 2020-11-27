@@ -30,14 +30,6 @@ spec:
       uri: {{ .Values.builds.git_url }}
     contextDir: /
   triggers:
-  - generic:
-      secretReference:
-        name: curriki-docker-7-generic-webhook-secret
-    type: Generic
-  - github:
-      secretReference:
-        name: curriki-docker-7-github-webhook-secret
-    type: GitHub
   - type: ConfigChange
   - imageChange: {}
     type: ImageChange
