@@ -74,3 +74,49 @@ applications:
     project:
       name: curriki-labs-test
       enabled: true
+  curriki_ui_dev:
+    name: curriki-ui-dev
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-ui/chart
+    sync_policy_automated: true
+    destination: labs-dev
+    source_ref: main
+    values:
+      fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
+      image_repository: image-registry.openshift-image-registry.svc:5000
+      image_name: curriki-ui
+      builds:
+        enabled: true
+    ignore_differences:
+      ignoreDifferences:
+        - group: apps
+          kind: Deployment
+          jsonPointers:
+            - /spec/template/spec/containers/0/image
+    project:
+      name: curriki-labs-dev
+      enabled: true
+  curriki_ui_test:
+    name: curriki-ui-test
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-ui/chart
+    sync_policy_automated: true
+    destination: labs-test
+    source_ref: main
+    values:
+      fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
+      image_repository: image-registry.openshift-image-registry.svc:5000
+      image_name: curriki-ui
+      builds:
+        enabled: false
+    ignore_differences:
+      ignoreDifferences:
+        - group: apps
+          kind: Deployment
+          jsonPointers:
+            - /spec/template/spec/containers/0/image
+    project:
+      name: curriki-labs-test
+      enabled: true

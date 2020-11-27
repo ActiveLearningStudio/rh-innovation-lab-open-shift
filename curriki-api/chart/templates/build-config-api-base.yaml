@@ -26,14 +26,6 @@ spec:
       uri: {{ .Values.builds.git_url | quote }}
     contextDir: /
   triggers:
-    - type: Generic
-      generic:
-        secretReference:
-          name: curriki-docker-7-generic-webhook-secret
-    - type: GitHub
-      github:
-        secretReference:
-          name: curriki-docker-7-github-webhook-secret
     - type: ConfigChange
   runPolicy: Serial
 {{ end }}
