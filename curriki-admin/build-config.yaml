@@ -19,7 +19,7 @@ spec:
   strategy:
     type: Docker
     dockerStrategy:
-      dockerfilePath: Dockerfile.rh.client
+      dockerfilePath: Dockerfile.admin
   postCommit: {}
   source:
     type: Git
