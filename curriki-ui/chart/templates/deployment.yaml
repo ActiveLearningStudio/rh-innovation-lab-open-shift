@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-ui.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-ui\")].image","pause":"false"}]'
+  labels:
+    {{- include "curriki-ui.labels" . | nindent 4 }}
+  name: {{ include "curriki-ui.fullname" . }}
+spec:
+  progressDeadlineSeconds: 600
+  replicas: {{ .Values.replicas }}
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+    {{- include "curriki-ui.selectorLabels" . | nindent 6 }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        {{- include "curriki-ui.selectorLabels" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: curriki-ui-env
+          configMap:
+            name: curriki-ui
+            defaultMode: 420
+      containers:
+      - image: ' '
+        imagePullPolicy: Always
+        name: curriki-ui
+        resources: {}
+        volumeMounts:
+          - name: curriki-ui-env
+            mountPath: /var/app/current/.env
+            subPath: .env
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
