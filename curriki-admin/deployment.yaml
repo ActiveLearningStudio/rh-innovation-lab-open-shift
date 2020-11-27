@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest","namespace":"awesome-curriki"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"}]
+      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest","namespace":"labs-test"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"}]
   name: curriki-admin
   labels:
     app: curriki-admin
@@ -29,6 +29,14 @@ spec:
           configMap:
             name: curriki-admin
             defaultMode: 420
+      initContainers:
+        - name: init-container
+          image: ' '
+          command: [ "/bin/bash", "-c", "cd /var/www/html/storage && mkdir -p framework/views && mkdir -p framework/sessions && mkdir -p framework/cache/data && mkdir -p framework/testing && mkdir -p logs && mkdir -p app/public" ]
+          volumeMounts:
+            - mountPath: /var/www/html/storage
+              name: admin-storage
+
       containers:
         - name: curriki-admin
           image: ' '
