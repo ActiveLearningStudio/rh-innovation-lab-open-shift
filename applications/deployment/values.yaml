@@ -54,7 +54,7 @@ applications:
     destination: labs-test
     source_ref: main
     values:
-      replicas: 2
+      replicas: 1
       fullnameOverride: curriki-api # important to use this if want same app name in multiple ns, else release.name used in chart
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
