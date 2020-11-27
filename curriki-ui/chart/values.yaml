@@ -1,0 +1,11 @@
+builds:
+  enabled: false
+  git_url: https://github.com/imcoder001/curriki-docker
+
+# OpenShift objects
+route: true
+replicas: 1
+image_repository: quay.io
+image_name: curriki-api
+image_namespace: curriki
+image_version: latest

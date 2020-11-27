@@ -1,0 +1,38 @@
+{{- if (eq .Values.builds.enabled true) }}
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    {{- include "curriki-ui.labels" . | nindent 4 }}
+  name: {{ include "curriki-ui.fullname" . }}
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: {{ include "curriki-ui.fullname" . }}:{{ .Values.image_version }}
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: /
+    git:
+      uri: {{ .Values.builds.git_url }}
+    type: Git
+  strategy:
+    dockerStrategy:
+      dockerfilePath: Dockerfile.client
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - generic:
+      secretReference:
+        name: curriki-ui-generic-webhook-secret
+    type: Generic
+  - github:
+      secretReference:
+        name: curriki-ui-github-webhook-secret
+    type: GitHub
+  - type: ConfigChange
+{{ end }}
