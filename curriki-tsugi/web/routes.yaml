@@ -3,16 +3,16 @@ apiVersion: route.openshift.io/v1
 metadata:
   # annotations:
   #   haproxy.router.openshift.io/rewrite-target: /tsugi
-  name: tsugi-web
+  name: curriki-tsugi-web
   labels:
-    app: tsugi-web
-    app.kubernetes.io/component: tsugi-web
-    app.kubernetes.io/instance: tsugi-web
+    app: curriki-tsugi-web
+    app.kubernetes.io/component: curriki-tsugi-web
+    app.kubernetes.io/instance: curriki-tsugi-web
     app.kubernetes.io/part-of: curriki
 spec:
   to:
     kind: Service
-    name: tsugi-web
+    name: curriki-tsugi-web
     weight: 100
   port:
     targetPort: 9999-tcp

@@ -1,0 +1,17 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: tsugi-mysql
+  labels:
+    app: curriki-tsugi
+    app.kubernetes.io/component: curriki-tsugi
+    app.kubernetes.io/instance: curriki-tsugi
+    app.kubernetes.io/part-of: curriki
+spec:
+  to:
+    kind: Service
+    name: tsugi-mysql
+    weight: 100
+  port:
+    targetPort: 3306-tcp
+  wildcardPolicy: None

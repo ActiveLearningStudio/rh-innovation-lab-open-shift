@@ -6,15 +6,15 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: tsugi-web
-    app.kubernetes.io/component: tsugi-web
-    app.kubernetes.io/instance: tsugi-web
+    io.kompose.service: curriki-tsugi-web
+    app.kubernetes.io/component: curriki-tsugi-web
+    app.kubernetes.io/instance: curriki-tsugi-web
     app.kubernetes.io/part-of: curriki
-  name: tsugi-web
+  name: curriki-tsugi-web
 spec:
   ports:
   - name: 9999-tcp
     port: 9999
     targetPort: 9999
   selector:
-    io.kompose.service: tsugi-web
+    io.kompose.service: curriki-tsugi-web

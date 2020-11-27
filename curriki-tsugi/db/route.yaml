@@ -1,0 +1,21 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"route.openshift.io/v1","kind":"Route","metadata":{"annotations":{},"labels":{"app":"curriki-tsugi","app.kubernetes.io/component":"curriki-tsugi","app.kubernetes.io/instance":"curriki-tsugi","app.kubernetes.io/part-of":"curriki"},"name":"curriki-tsugi-mysql","namespace":"awesome-curriki"},"spec":{"port":{"targetPort":"3306-tcp"},"to":{"kind":"Service","name":"curriki-tsugi-mysql","weight":100},"wildcardPolicy":"None"}}
+    openshift.io/host.generated: 'true'
+  name: curriki-tsugi-mysql
+  labels:
+    app: curriki-tsugi
+    app.kubernetes.io/component: curriki-tsugi
+    app.kubernetes.io/instance: curriki-tsugi
+    app.kubernetes.io/part-of: curriki
+spec:
+  to:
+    kind: Service
+    name: curriki-tsugi-mysql
+    weight: 100
+  port:
+    targetPort: 3306-tcp
+  wildcardPolicy: None

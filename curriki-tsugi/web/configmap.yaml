@@ -57,7 +57,7 @@ data:
     //} else if ( U::get($_SERVER,'SERVER_PORT') == 8888 ) {
     //    $wwwroot = 'http://localhost:8888/tsugi'; // Mac XAMP
     //} else {
-    //    $wwwroot = "http://tsugi-web-ali-project.apps.curriki.apac-1.rht-labs.com";
+    //    $wwwroot = "http://curriki-tsugi-web-awesome-curriki.apps.curriki.apac-1.rht-labs.com";
     //}
 
     // Once you are on a real server delete the above if statement
@@ -66,7 +66,7 @@ data:
 
     // on the Internet for LTI signatures to compute correctly
 
-    $wwwroot = "http://tsugi-web-ali-project.apps.curriki.apac-1.rht-labs.com";
+    $wwwroot = "http://curriki-tsugi-web-awesome-curriki.apps.curriki.apac-1.rht-labs.com";
 
     // $wwwroot = "https://fb610139.ngrok.io/tsugi";  // To test with ngrok
 
@@ -123,13 +123,13 @@ data:
     // to run the upgrade.php script which auto-creates the tables.
 
     $CFG->pdo       =
-    'mysql:host=tsugi-mysql.ali-project.svc.cluster.local;dbname=sampledb';
+    'mysql:host=curriki-tsugi-mysql.awesome-curriki.svc.cluster.local;dbname=curriki';
 
     // $CFG->pdo       = 'mysql:host=tsugi_db;port=8889;dbname=tsugi'; // MAMP
 
-    $CFG->dbuser    = 'user53I';
+    $CFG->dbuser    = 'curriki';
 
-    $CFG->dbpass    = 'kV4F1ndpDRIMCW4f';
+    $CFG->dbpass    = 'curriki';
 
 
     // Sometimes the PDO constructor call needs additional parameters
