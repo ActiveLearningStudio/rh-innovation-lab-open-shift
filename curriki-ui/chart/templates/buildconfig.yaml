@@ -26,13 +26,5 @@ spec:
     type: Docker
   successfulBuildsHistoryLimit: 5
   triggers:
-  - generic:
-      secretReference:
-        name: curriki-ui-generic-webhook-secret
-    type: Generic
-  - github:
-      secretReference:
-        name: curriki-ui-github-webhook-secret
-    type: GitHub
   - type: ConfigChange
 {{ end }}
