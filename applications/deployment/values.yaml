@@ -1,21 +1,21 @@
-dev_allowed_destinations: &dev_allowed_destinations # argocd project
-  - namespace: labs-dev
-    server: https://kubernetes.default.svc
-test_allowed_destinations: &test_allowed_destinations # argocd project
-  - namespace: labs-test
-    server: https://kubernetes.default.svc
-
+dev_allowed_destinations: &dev_allowed_destinations
+  - namespace: # argocd project
+      labs-dev
+      server: https://kubernetes.default.svc
+test_allowed_destinations: &test_allowed_destinations
+  - namespace: # argocd project
+      labs-test
+      server: https://kubernetes.default.svc
 ##############
 # Argo App of Apps declaration
 #############
 argocd_projects:
-- enabled: true
-  name: curriki-labs-dev
-  destinations: *dev_allowed_destinations
-- enabled: true
-  name: curriki-labs-test
-  destinations: *test_allowed_destinations
-
+  - enabled: true
+    name: curriki-labs-dev
+    destinations: *dev_allowed_destinations
+  - enabled: true
+    name: curriki-labs-test
+    destinations: *test_allowed_destinations
 applications:
   curriki_api_dev:
     name: curriki-api-dev
@@ -86,7 +86,7 @@ applications:
       fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
-      image_version: latest
+      image_version: 0.1.0
       builds:
         enabled: false # enabled in jenkins
     ignore_differences:
