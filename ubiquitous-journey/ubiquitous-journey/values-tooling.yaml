@@ -49,6 +49,8 @@ applications:
     destination: *ci_cd_ns
     values:
       persistence: true
+        accessModes: ReadWriteOnce
+        volumeSize: 20Gi
     ignore_differences:
       - group: apps.openshift.io
         kind: DeploymentConfig
