@@ -48,7 +48,8 @@ applications:
     sync_policy: *sync_policy_true
     destination: *ci_cd_ns
     values:
-      persistence: false
+      persistence: true
+      source_secrets:
     ignore_differences:
       - group: apps.openshift.io
         kind: DeploymentConfig
