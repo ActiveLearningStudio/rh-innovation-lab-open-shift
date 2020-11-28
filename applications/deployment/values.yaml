@@ -1,21 +1,19 @@
 dev_allowed_destinations: &dev_allowed_destinations
-  - namespace: # argocd project
-      labs-dev
-      server: https://kubernetes.default.svc
+- namespace: labs-dev
+  server: https://kubernetes.default.svc
 test_allowed_destinations: &test_allowed_destinations
-  - namespace: # argocd project
-      labs-test
-      server: https://kubernetes.default.svc
+- namespace: labs-test
+  server: https://kubernetes.default.svc
 ##############
 # Argo App of Apps declaration
 #############
 argocd_projects:
-  - enabled: true
-    name: curriki-labs-dev
-    destinations: *dev_allowed_destinations
-  - enabled: true
-    name: curriki-labs-test
-    destinations: *test_allowed_destinations
+- enabled: true
+  name: curriki-labs-dev
+  destinations: *dev_allowed_destinations
+- enabled: true
+  name: curriki-labs-test
+  destinations: *test_allowed_destinations
 applications:
   curriki_api_dev:
     name: curriki-api-dev
@@ -26,22 +24,22 @@ applications:
     destination: labs-dev
     source_ref: main
     values:
-      fullnameOverride: curriki-api # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-api
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
         enabled: true
     ignore_differences:
       ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jsonPointers:
-            - /spec/template/spec/initContainers/0/image
-            - /spec/template/spec/containers/0/image
-            - /spec/template/spec/containers/1/image
-            - /spec/template/spec/containers/2/image
-            - /spec/template/spec/containers/3/image
-            - /spec/template/spec/containers/4/image
+      - group: apps
+        kind: Deployment
+        jsonPointers:
+        - /spec/template/spec/initContainers/0/image
+        - /spec/template/spec/containers/0/image
+        - /spec/template/spec/containers/1/image
+        - /spec/template/spec/containers/2/image
+        - /spec/template/spec/containers/3/image
+        - /spec/template/spec/containers/4/image
     project:
       name: curriki-labs-dev
       enabled: true
@@ -55,22 +53,22 @@ applications:
     source_ref: main
     values:
       replicas: 1
-      fullnameOverride: curriki-api # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-api
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
         enabled: false
     ignore_differences:
       ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jsonPointers:
-            - /spec/template/spec/initContainers/0/image
-            - /spec/template/spec/containers/0/image
-            - /spec/template/spec/containers/1/image
-            - /spec/template/spec/containers/2/image
-            - /spec/template/spec/containers/3/image
-            - /spec/template/spec/containers/4/image
+      - group: apps
+        kind: Deployment
+        jsonPointers:
+        - /spec/template/spec/initContainers/0/image
+        - /spec/template/spec/containers/0/image
+        - /spec/template/spec/containers/1/image
+        - /spec/template/spec/containers/2/image
+        - /spec/template/spec/containers/3/image
+        - /spec/template/spec/containers/4/image
     project:
       name: curriki-labs-test
       enabled: true
@@ -83,18 +81,18 @@ applications:
     destination: labs-dev
     source_ref: main
     values:
-      fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-ui
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
       image_version: 0.1.0
       builds:
-        enabled: false # enabled in jenkins
+        enabled: false
     ignore_differences:
       ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jsonPointers:
-            - /spec/template/spec/containers/0/image
+      - group: apps
+        kind: Deployment
+        jsonPointers:
+        - /spec/template/spec/containers/0/image
     project:
       name: curriki-labs-dev
       enabled: true
@@ -107,18 +105,18 @@ applications:
     destination: labs-test
     source_ref: main
     values:
-      fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-ui
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
       image_version: latest
       builds:
-        enabled: false # dont build in test
+        enabled: false
     ignore_differences:
       ignoreDifferences:
-        - group: apps
-          kind: Deployment
-          jsonPointers:
-            - /spec/template/spec/containers/0/image
+      - group: apps
+        kind: Deployment
+        jsonPointers:
+        - /spec/template/spec/containers/0/image
     project:
       name: curriki-labs-test
       enabled: true
