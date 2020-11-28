@@ -5,4 +5,8 @@ builds:
 # OpenShift objects
 route: true
 replicas: 1
+# Image details
+image_repository: quay.io
+image_name: curriki-ui
+image_namespace: curriki
 image_version: latest
