@@ -86,8 +86,9 @@ applications:
       fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
+      image_version: latest
       builds:
-        enabled: true
+        enabled: false # enabled in jenkins
     ignore_differences:
       ignoreDifferences:
         - group: apps
@@ -109,8 +110,9 @@ applications:
       fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
+      image_version: latest
       builds:
-        enabled: false
+        enabled: false # dont build in test
     ignore_differences:
       ignoreDifferences:
         - group: apps
