@@ -24,7 +24,7 @@ spec:
     type: Git
   strategy:
     dockerStrategy:
-      dockerfilePath: Dockerfile.client
+      dockerfilePath: Dockerfile.rh.client
     type: Docker
   successfulBuildsHistoryLimit: 5
   triggers:
