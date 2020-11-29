@@ -112,7 +112,7 @@ applications:
       fullnameOverride: curriki-ui
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
-      image_version: latest
+      image_version: 0.1.0
       builds:
         enabled: false
     ignore_differences:
