@@ -7,9 +7,13 @@ metadata:
   name: {{ include "curriki-ui.fullname" . }}
   creationTimestamp: null
 spec:
+  lookupPolicy:
+    local: false
+{{- if (eq .Values.istag.enabled true) }}
   tags:
     - from:
         kind: DockerImage
         name: {{ .Values.image_repository }}/{{ .Values.image_namespace }}/{{ .Values.image_name }}:{{ .Values.image_version }}
       importPolicy: {}
       name: {{ .Chart.AppVersion }}
+{{ end }}

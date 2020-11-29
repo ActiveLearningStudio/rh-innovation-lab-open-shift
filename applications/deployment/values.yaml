@@ -87,6 +87,8 @@ applications:
       image_version: 0.1.0
       builds:
         enabled: false
+      istag:
+        enabled: false
     ignore_differences:
       ignoreDifferences:
         - group: apps
@@ -114,6 +116,8 @@ applications:
       image_name: curriki-ui
       image_version: 0.1.0
       builds:
+        enabled: false
+      istag:
         enabled: false
     ignore_differences:
       ignoreDifferences:
