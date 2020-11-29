@@ -53,11 +53,6 @@ applications:
         accessModes: ReadWriteOnce
         volumeSize: 20Gi
       source_secrets:
-      buildconfigs:
-        - name: "jenkins-agent-argocd"
-          source_context_dir: "jenkins-agents/jenkins-agent-argocd"
-          source_repo: https://github.com/eformat/containers-quickstarts
-          source_repo_ref: "feature/argocd-1.7.10"
     ignore_differences:
       - group: apps.openshift.io
         kind: DeploymentConfig
