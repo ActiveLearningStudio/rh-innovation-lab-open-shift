@@ -77,7 +77,7 @@ applications:
     enabled: true
     source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
     source_path: curriki-ui/chart
-    sync_policy_automated: true
+    sync_policy_automated: false
     destination: labs-dev
     source_ref: main
     values:
@@ -101,7 +101,7 @@ applications:
     enabled: true
     source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
     source_path: curriki-ui/chart
-    sync_policy_automated: true
+    sync_policy_automated: false
     destination: labs-test
     source_ref: main
     values:
