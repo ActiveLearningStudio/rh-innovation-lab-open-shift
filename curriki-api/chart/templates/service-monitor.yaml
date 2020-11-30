@@ -1,9 +1,9 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
+  name: {{ include "curriki-api.fullname" . }}
   labels:
-    k8s-app: prometheus-fpm-monitor
-  name: prometheus-fpm-monitor
+    {{- include "curriki-api.labels" . | nindent 4 }}
 spec:
   endpoints:
     - interval: 30s
@@ -12,4 +12,4 @@ spec:
       path: /metrics
   selector:
     matchLabels:
-      app: curriki-api
+    {{- include "curriki-api.selectorLabels" . | nindent 6 }}
