@@ -7,8 +7,19 @@ namespace: labs-test
 bases:
 - ../base
 
+patches:
+  - target:
+      kind: DeploymentConfig
+      name: postgresql-master
+    path: postgresql-deploymentconfig-env-connections.yaml
+  - target:
+      kind: DeploymentConfig
+      name: postgresql-slave
+    path: postgresql-deploymentconfig-env-connections.yaml
+
+
+
 patchesStrategicMerge:
 - postgresql-data-claim.yaml
 - postgresql-slave-deploymentconfig.yaml
-#- postgresql-master-deploymentconfig.yaml
 - postgresql-exporter-deployment.yaml
