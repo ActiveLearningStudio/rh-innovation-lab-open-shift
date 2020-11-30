@@ -1,7 +1,9 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: curriki-tsugi
+  labels:
+    {{- include "curriki-tsugi.labels" . | nindent 4 }}
+  name: {{ include "curriki-tsugi.fullname" . }}
 data:
   config.php: >
     <?php
@@ -57,7 +59,7 @@ data:
     //} else if ( U::get($_SERVER,'SERVER_PORT') == 8888 ) {
     //    $wwwroot = 'http://localhost:8888/tsugi'; // Mac XAMP
     //} else {
-    //    $wwwroot = "http://curriki-tsugi-web-awesome-curriki.apps.curriki.apac-1.rht-labs.com";
+    //    $wwwroot = "http://curriki-tsugi-awesome-curriki.apps.curriki.apac-1.rht-labs.com";
     //}
 
     // Once you are on a real server delete the above if statement
@@ -66,7 +68,7 @@ data:
 
     // on the Internet for LTI signatures to compute correctly
 
-    $wwwroot = "http://curriki-tsugi-web-awesome-curriki.apps.curriki.apac-1.rht-labs.com";
+    $wwwroot = "http://curriki-tsugi-awesome-curriki.apps.curriki.apac-1.rht-labs.com";
 
     // $wwwroot = "https://fb610139.ngrok.io/tsugi";  // To test with ngrok
 

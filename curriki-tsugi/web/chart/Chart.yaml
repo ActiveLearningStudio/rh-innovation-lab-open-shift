@@ -1,0 +1,9 @@
+apiVersion: v2
+name: curriki-tsugi
+description: A Helm chart for installing Tsugi for Curriki Studio
+type: application
+version: 0.0.1
+appVersion: 0.0.1
+home: GITHUB LOCATION FOR THE CHART
+maintainers:
+  - name: alimehdi
