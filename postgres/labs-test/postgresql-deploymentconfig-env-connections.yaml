@@ -1,3 +1,4 @@
+---
 - op: add
   path: "/spec/template/spec/containers/0/env/-"
   value:
@@ -13,4 +14,3 @@
   value:
     name: "POSTGRESQL_EFFECTIVE_CACHE_SIZE"
     value: "512MB"
-
