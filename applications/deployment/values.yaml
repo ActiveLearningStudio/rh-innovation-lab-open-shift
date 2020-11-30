@@ -84,7 +84,7 @@ applications:
       fullnameOverride: curriki-ui
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
-      image_version: 0.1.0
+      image_version: 0.1.1
       builds:
         enabled: false
       istag:
