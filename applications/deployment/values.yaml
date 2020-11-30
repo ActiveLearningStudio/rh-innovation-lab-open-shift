@@ -1,21 +1,19 @@
-dev_allowed_destinations: &dev_allowed_destinations # argocd project
+dev_allowed_destinations: &dev_allowed_destinations
   - namespace: labs-dev
     server: https://kubernetes.default.svc
-test_allowed_destinations: &test_allowed_destinations # argocd project
+test_allowed_destinations: &test_allowed_destinations
   - namespace: labs-test
     server: https://kubernetes.default.svc
-
 ##############
 # Argo App of Apps declaration
 #############
 argocd_projects:
-- enabled: true
-  name: curriki-labs-dev
-  destinations: *dev_allowed_destinations
-- enabled: true
-  name: curriki-labs-test
-  destinations: *test_allowed_destinations
-
+  - enabled: true
+    name: curriki-labs-dev
+    destinations: *dev_allowed_destinations
+  - enabled: true
+    name: curriki-labs-test
+    destinations: *test_allowed_destinations
 applications:
   curriki_api_dev:
     name: curriki-api-dev
@@ -26,7 +24,7 @@ applications:
     destination: labs-dev
     source_ref: main
     values:
-      fullnameOverride: curriki-api # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-api
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
@@ -55,7 +53,7 @@ applications:
     source_ref: main
     values:
       replicas: 1
-      fullnameOverride: curriki-api # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-api
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
@@ -79,21 +77,28 @@ applications:
     enabled: true
     source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
     source_path: curriki-ui/chart
-    sync_policy_automated: true
+    sync_policy_automated: false
     destination: labs-dev
     source_ref: main
     values:
-      fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-ui
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
+      image_version: 0.1.1
       builds:
-        enabled: true
+        enabled: false
+      istag:
+        enabled: false
     ignore_differences:
       ignoreDifferences:
         - group: apps
           kind: Deployment
           jsonPointers:
             - /spec/template/spec/containers/0/image
+        - group: image.openshift.io
+          kind: ImageStream
+          jsonPointers:
+            - /spec/tags
     project:
       name: curriki-labs-dev
       enabled: true
@@ -102,14 +107,17 @@ applications:
     enabled: true
     source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
     source_path: curriki-ui/chart
-    sync_policy_automated: true
+    sync_policy_automated: false
     destination: labs-test
     source_ref: main
     values:
-      fullnameOverride: curriki-ui # important to use this if want same app name in multiple ns, else release.name used in chart
+      fullnameOverride: curriki-ui
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-ui
+      image_version: 0.1.1
       builds:
+        enabled: false
+      istag:
         enabled: false
     ignore_differences:
       ignoreDifferences:
@@ -117,6 +125,10 @@ applications:
           kind: Deployment
           jsonPointers:
             - /spec/template/spec/containers/0/image
+        - group: image.openshift.io
+          kind: ImageStream
+          jsonPointers:
+            - /spec/tags
     project:
       name: curriki-labs-test
       enabled: true

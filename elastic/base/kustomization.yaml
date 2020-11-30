@@ -6,3 +6,4 @@ resources:
 - elastic_cr.yaml
 - kibana_cr.yaml
 - routes.yaml
+- api-es-index-load-job.yaml
