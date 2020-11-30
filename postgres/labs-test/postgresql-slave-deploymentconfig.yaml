@@ -15,23 +15,11 @@ spec:
         name: postgresql-slave
     spec:
       containers:
-      - name: postgres-slave
-        env:
-        - name: POSTGRESQL_MAX_CONNECTIONS
-          value: "500"
-        - name: POSTGRESQL_SHARED_BUFFERS
-          value: 96MB
-        - name: POSTGRESQL_EFFECTIVE_CACHE_SIZE
-          value: 512MB
-        - name: POSTGRESQL_MASTER_SERVICE_NAME
-          value: postgresql-master
-        - name: POSTGRESQL_MASTER_USER
-          value: master
-        - name: POSTGRESQL_MASTER_PASSWORD
-          value: fkNrPS7HaWWU
-        - name: POSTGRESQL_USER
-          value: pguser
-        - name: POSTGRESQL_PASSWORD
-          value: password
-        - name: POSTGRESQL_DATABASE
-          value: currikidb
+        - name: postgresql-slave
+          env:
+            - name: POSTGRESQL_MAX_CONNECTIONS
+              value: 250
+            - name: POSTGRESQL_SHARED_BUFFERS
+              value: 96M
+            - name: POSTGRESQL_EFFECTIVE_CACHE_SIZE
+              value: 512M
