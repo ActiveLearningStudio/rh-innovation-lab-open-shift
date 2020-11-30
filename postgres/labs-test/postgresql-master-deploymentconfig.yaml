@@ -13,6 +13,7 @@ spec:
         name: postgresql-master
     spec:
       containers:
+        - name: postgresql-master
           env:
             - name: POSTGRESQL_MAX_CONNECTIONS
               value: 250
@@ -20,4 +21,4 @@ spec:
               value: 96M
             - name: POSTGRESQL_EFFECTIVE_CACHE_SIZE
               value: 512M
-          name: postgresql-master
+

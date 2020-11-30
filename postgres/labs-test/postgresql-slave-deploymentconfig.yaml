@@ -9,3 +9,21 @@ metadata:
   name: postgresql-slave
 spec:
   replicas: 2
+  template:
+    metadata:
+      labels:
+        name: postgresql-slave
+    spec:
+      containers:
+        - name: postgresql-slave
+          env:
+            - name: POSTGRESQL_MAX_CONNECTIONS
+              value: 250
+            - name: POSTGRESQL_SHARED_BUFFERS
+              value: 96M
+            - name: POSTGRESQL_EFFECTIVE_CACHE_SIZE
+              value: 512M
+
+
+
+
