@@ -6,7 +6,7 @@ export DB_NAME=${DB_NAME:-currikidb}
 export DB_SERVICE=postgresql-master.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local
 
 while true; do
-  psql -q -h ${DB_SERVICE} -p ${DB_PORT} -d ${DB_NAME} -qt -c "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'elastic_migrations');" | cut -d \| -f 1 | grep -qw t
+  psql -U 1001 -q -h ${DB_SERVICE} -p ${DB_PORT} -d ${DB_NAME} -qt -c "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'elastic_migrations');" | cut -d \| -f 1 | grep -qw t
   if [ $? -eq 1 ]; then
     echo " 🏗 no elastic_migrations table found - exiting 🏗";
     exit 0
