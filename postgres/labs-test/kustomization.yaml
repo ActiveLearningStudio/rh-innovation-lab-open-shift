@@ -9,6 +9,6 @@ bases:
 
 patchesStrategicMerge:
 - postgresql-data-claim.yaml
-#- postgresql-slave-deploymentconfig.yaml
+- postgresql-slave-deploymentconfig.yaml
 #- postgresql-master-deploymentconfig.yaml
 - postgresql-exporter-deployment.yaml
