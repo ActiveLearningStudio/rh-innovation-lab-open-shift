@@ -20,9 +20,9 @@ spec:
             - name: POSTGRESQL_MAX_CONNECTIONS
               value: 250
             - name: POSTGRESQL_SHARED_BUFFERS
-              value: 96M
+              value: 96MB
             - name: POSTGRESQL_EFFECTIVE_CACHE_SIZE
-              value: 512M
+              value: 512MB
 
 
 
