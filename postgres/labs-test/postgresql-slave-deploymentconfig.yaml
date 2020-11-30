@@ -15,8 +15,7 @@ spec:
         name: postgresql-slave
     spec:
       containers:
-      - args:
-        - run-postgresql-slave
+      - name: postgres-slave
         env:
         - name: POSTGRESQL_MAX_CONNECTIONS
           value: "500"

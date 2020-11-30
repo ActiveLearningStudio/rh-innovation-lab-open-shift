@@ -14,8 +14,7 @@ spec:
         name: postgresql-master
     spec:
       containers:
-      - args:
-        - run-postgresql-master
+      - name: postgres-master
         env:
         - name: POSTGRESQL_MAX_CONNECTIONS
           value: "250"
