@@ -5,6 +5,15 @@ metadata:
 spec:
   template:
     spec:
+      volumes:
+        - name: h5p-storage
+          persistentVolumeClaim:
+            claimName: h5p-storage
+        - name: curriki-api-env
+          secret:
+            defaultMode: 420
+            secretName: curriki-api
+
       initContainers:
       - name: wait-for-es
         image: gcr.io/google-containers/busybox:latest
@@ -17,4 +26,12 @@ spec:
         image: quay.io/masood_faisal/curriki-es-index-load:latest
         imagePullPolicy: Always
         command: [ "./load-index.sh" ]
+        volumeMounts:
+          - name: h5p-storage
+            mountPath: /var/www/html/storage
+          - name: curriki-api-env
+            mountPath: /var/www/html/.env
+            subPath: .env
+
+
       restartPolicy: Never
