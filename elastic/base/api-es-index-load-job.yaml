@@ -1,4 +1,3 @@
-
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -9,7 +8,7 @@ spec:
       initContainers:
       - name: wait-for-database
         image: quay.io/fahad_curriki/curriki-es-index-load:latest
-        command: ['sh', '-c', "until nslookup postgresql-master.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for postgres-master service; sleep 3; done"]    
+        command: ['sh', '-c', "until nslookup my-escluster-es-default.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for es service service; sleep 3; done"]
       containers:
       - name: load-es-index
         image: quay.io/fahad_curriki/curriki-es-index-load:latest
