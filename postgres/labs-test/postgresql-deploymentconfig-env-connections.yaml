@@ -1,16 +1,16 @@
 - op: add
   path: "/spec/template/spec/containers/0/env/-"
   value:
-    name: POSTGRESQL_MAX_CONNECTIONS
-    value: 250
+    name: "POSTGRESQL_MAX_CONNECTIONS"
+    value: "250"
 - op: add
   path: "/spec/template/spec/containers/0/env/-"
   value:
-    name: POSTGRESQL_SHARED_BUFFERS
-    value: 96MB
+    name: "POSTGRESQL_SHARED_BUFFERS"
+    value: "96MB"
 - op: add
   path: "/spec/template/spec/containers/0/env/-"
   value:
-    name: POSTGRESQL_EFFECTIVE_CACHE_SIZE
-    value: 512MB
+    name: "POSTGRESQL_EFFECTIVE_CACHE_SIZE"
+    value: "512MB"
 
