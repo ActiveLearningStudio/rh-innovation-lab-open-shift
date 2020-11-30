@@ -3,7 +3,7 @@
   path: "/spec/template/spec/containers/0/env/-"
   value:
     name: "POSTGRESQL_MAX_CONNECTIONS"
-    value: "250"
+    value: "400"
 - op: add
   path: "/spec/template/spec/containers/0/env/-"
   value:
