@@ -12,11 +12,11 @@ while true; do
     exit 0
   else
     echo " 🏗 elastic_migrations table found - creating 🏗";
-    php artisan elastic:migrate:rollback
-    php artisan elastic:migrate
-    php artisan scout:import "App\Models\Activity"
-    php artisan scout:import "App\Models\Playlist"
-    php artisan scout:import "App\Models\Project"
+    php artisan elastic:migrate:rollback --no-interaction 2>&1 > /dev/stdout
+    php artisan elastic:migrate --no-interaction 2>&1 > /dev/stdout
+    php artisan scout:import "App\Models\Activity" --no-interaction 2>&1 > /dev/stdout
+    php artisan scout:import "App\Models\Playlist" --no-interaction 2>&1 > /dev/stdout
+    php artisan scout:import "App\Models\Project" --no-interaction 2>&1 > /dev/stdout
     if [ $? -eq 0 ]; then
       exit 0
     fi
