@@ -19,10 +19,10 @@ spec:
         - name: curriki-tsugi
           persistentVolumeClaim:
             claimName: {{ include "curriki-tsugi.fullname" . }}
-        - name: config-php-vol
-          configMap:
-            name: {{ include "curriki-tsugi.fullname" . }}
+        - name: curriki-tsugi-env
+          secret:
             defaultMode: 420
+            secretName: curriki-tsugi-env
       initContainers:
         - name: init-container
           image: quay.io/curriki/tsugi-web
@@ -52,7 +52,7 @@ spec:
           resources: {}
           readinessProbe:
             httpGet:
-              path: /tsugi
+              path: /
               port: 9999
               scheme: HTTP
             timeoutSeconds: 1
@@ -62,7 +62,7 @@ spec:
           volumeMounts:
             - name: curriki-tsugi
               mountPath: /var/www/html/mod/curriki
-            - name: config-php-vol
+            - name: curriki-tsugi-env
               mountPath: /var/www/html/config.php
               subPath: config.php
       restartPolicy: Always
