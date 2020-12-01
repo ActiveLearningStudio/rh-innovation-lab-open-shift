@@ -38,11 +38,27 @@ spec:
           image: quay.io/curriki/tsugi-web
           imagePullPolicy: "Always"
           name: curriki-tsugi
+          livenessProbe:
+            httpGet:
+              path: /tsugi
+              port: 9999
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           ports:
           - containerPort: 9999
           resources: {}
-          stdin: true
-          tty: true
+          readinessProbe:
+            httpGet:
+              path: /tsugi
+              port: 9999
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           volumeMounts:
             - name: curriki-tsugi
               mountPath: /var/www/html/mod/curriki
