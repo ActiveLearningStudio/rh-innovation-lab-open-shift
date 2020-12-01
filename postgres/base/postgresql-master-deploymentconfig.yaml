@@ -40,7 +40,7 @@ spec:
         - name: POSTGRESQL_ADMIN_PASSWORD
           value: password
         image: ' '
-        command: ["/bin/bash", "-c", 'echo "synchronous_commit = on" >> /var/lib/pgsql/openshift-custom-postgresql.conf && run-postgresql']
+        command: ["/bin/bash", "-c", 'echo "synchronous_commit = on" >> /var/lib/pgsql/openshift-custom-postgresql-99.conf && run-postgresql']
         imagePullPolicy: IfNotPresent
         livenessProbe:
           exec:
