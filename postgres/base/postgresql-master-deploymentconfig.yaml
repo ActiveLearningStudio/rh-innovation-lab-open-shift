@@ -23,11 +23,6 @@ spec:
       labels:
         name: postgresql-master
     spec:
-      initContainers:
-      - name: enable-sync-commit
-        image: gcr.io/google-containers/busybox:latest
-        command: [ 'sh', '-c', 'while [ ! -f /var/lib/pgsql/openshift-custom-postgresql.conf ]; do touch /var/lib/pgsql/openshift-custom-postgresql.conf; done; echo "synchronous_commit = on" >> /var/lib/pgsql/openshift-custom-postgresql.conf' ]
-
       containers:
       - args:
         - run-postgresql-master
