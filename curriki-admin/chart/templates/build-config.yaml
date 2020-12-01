@@ -1,0 +1,33 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: {{.Chart.Name}}
+  labels:
+    app: {{.Chart.Name}}
+    app.kubernetes.io/component: {{.Chart.Name}}
+    app.kubernetes.io/instance: {{.Chart.Name}}
+    app.kubernetes.io/part-of: curriki
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: '{{.Values.image_name}}:{{.Values.image_version}}'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.admin
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: '{{.Values.builds.git_url}}'
+    contextDir: /
+  triggers:
+  - type: ConfigChange
+  - imageChange: {}
+    type: ImageChange
+  runPolicy: Serial
