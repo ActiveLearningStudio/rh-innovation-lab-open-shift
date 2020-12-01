@@ -39,8 +39,22 @@ spec:
             name: h5p-storage
       containers:
         - name: curriki-api-fpm
+          livenessProbe:
+            tcpSocket:
+              port: 9999
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           image: ' '
           resources: { }
+          readinessProbe:
+            tcpSocket:
+              port: 9999
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           volumeMounts:
             - name: h5p-storage
               mountPath: /var/www/html/storage
@@ -54,9 +68,27 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: Always
         - name: curriki-api-fpm-prometheus
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8888
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           image: ' '
           resources: { }
-          command: ["/bin/sh", "-c", "/var/www/html/php-fpm-exporter.linux.amd64 --addr 127.0.0.1:8888 --fastcgi tcp://127.0.0.1:9999/status"]
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: 8888
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          command: ["/bin/sh", "-c", "/var/www/html/php-fpm-exporter.linux.amd64 --addr 0.0.0.0:8888 --fastcgi tcp://127.0.0.1:9999/status"]
           volumeMounts:
             - name: h5p-storage
               mountPath: /var/www/html/storage
@@ -70,8 +102,26 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: Always
         - name: curriki-api
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 8888
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           image: ' '
           resources: {}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           volumeMounts:
             - name: h5p-storage
               mountPath: /var/www/html/storage
@@ -85,8 +135,26 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: Always
         - name: laravel-echo-server
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 6001
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           image: ' '
           resources: {}
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 6001
+              scheme: HTTP
+            timeoutSeconds: 1
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
           command: [ "/bin/bash", "-c", "/usr/local/bin/api-laravel-echo-server.sh" ]
           volumeMounts:
             - name: h5p-storage
