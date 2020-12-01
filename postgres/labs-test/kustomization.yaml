@@ -9,7 +9,7 @@ bases:
 
 resources:
   - postgresql-zolando.yaml
-  -
+
 patches:
   - target:
       kind: DeploymentConfig
