@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "curriki-tsugi.labels" . | nindent 4 }}
+  name: {{ include "curriki-tsugi.fullname" . }}
+spec:
+  replicas: {{.Values.replicas}}
+  selector:
+    matchLabels:
+    {{- include "curriki-tsugi.selectorLabels" . | nindent 6 }}
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        {{- include "curriki-tsugi.selectorLabels" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: curriki-tsugi
+          persistentVolumeClaim:
+            claimName: curriki-tsugi
+        - name: config-php-vol
+          configMap:
+            name: curriki-tsugi
+            defaultMode: 420
+      initContainers:
+        - name: init-container
+          image: quay.io/curriki/tsugi-web
+          command: [ "/bin/bash", "-c", "/usr/local/bin/curriki-mod-init.sh" ]
+          volumeMounts:
+          - mountPath: /var/www/html/mod/curriki
+            name: curriki-tsugi
+      containers:
+        - args:
+          - bash
+          - -c
+          - ./docker-compose-init.sh
+          image: quay.io/curriki/tsugi-web
+          imagePullPolicy: "Always"
+          name: curriki-tsugi
+          ports:
+          - containerPort: 9999
+          resources: {}
+          stdin: true
+          tty: true
+          volumeMounts:
+            - name: curriki-tsugi
+              mountPath: /var/www/html/mod/curriki
+            - name: config-php-vol
+              mountPath: /var/www/html/config.php
+              subPath: config.php
+      restartPolicy: Always
+      serviceAccountName: ""

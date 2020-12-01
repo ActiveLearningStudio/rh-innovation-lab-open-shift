@@ -17,8 +17,6 @@ patches:
       name: postgresql-slave
     path: postgresql-deploymentconfig-env-connections.yaml
 
-
-
 patchesStrategicMerge:
 - postgresql-data-claim.yaml
 - postgresql-slave-deploymentconfig.yaml

@@ -132,3 +132,47 @@ applications:
     project:
       name: curriki-labs-test
       enabled: true
+  curriki_tsugi_dev:
+    name: curriki-tsugi-dev
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-tsugi/web/chart
+    sync_policy_automated: true
+    destination: labs-dev
+    source_ref: main
+    values:
+      fullnameOverride: curriki-tsugi
+      image_repository: image-registry.openshift-image-registry.svc:5000
+      image_name: curriki-tsugi
+    ignore_differences:
+      ignoreDifferences:
+        - group: apps
+          kind: Deployment
+          jsonPointers:
+            - /spec/template/spec/initContainers/0/image
+            - /spec/template/spec/containers/0/image
+    project:
+      name: curriki-labs-dev
+      enabled: true
+  curriki_tsugi_test:
+    name: curriki-tsugi-test
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-tsugi/web/chart
+    sync_policy_automated: true
+    destination: labs-test
+    source_ref: main
+    values:
+      fullnameOverride: curriki-tsugi
+      image_repository: image-registry.openshift-image-registry.svc:5000
+      image_name: curriki-tsugi
+    ignore_differences:
+      ignoreDifferences:
+        - group: apps
+          kind: Deployment
+          jsonPointers:
+            - /spec/template/spec/initContainers/0/image
+            - /spec/template/spec/containers/0/image
+    project:
+      name: curriki-labs-test
+      enabled: true

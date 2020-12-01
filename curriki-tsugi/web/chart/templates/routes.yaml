@@ -1,0 +1,14 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  labels:
+    {{- include "curriki-tsugi.labels" . | nindent 4 }}
+  name: {{ include "curriki-tsugi.fullname" . }}
+spec:
+  to:
+    kind: Service
+    name: curriki-tsugi
+    weight: 100
+  port:
+    targetPort: 9999-tcp
+  wildcardPolicy: None
