@@ -7,6 +7,9 @@ namespace: labs-test
 bases:
 - ../base
 
+resources:
+  - postgresql-zolando.yaml
+  -
 patches:
   - target:
       kind: DeploymentConfig
@@ -21,4 +24,3 @@ patchesStrategicMerge:
 - postgresql-data-claim.yaml
 - postgresql-slave-deploymentconfig.yaml
 - postgresql-exporter-deployment.yaml
-- postgresql-zolando.yaml
