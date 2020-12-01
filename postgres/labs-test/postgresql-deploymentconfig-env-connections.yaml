@@ -1,8 +1,9 @@
+---
 - op: add
   path: "/spec/template/spec/containers/0/env/-"
   value:
     name: "POSTGRESQL_MAX_CONNECTIONS"
-    value: "250"
+    value: "450"
 - op: add
   path: "/spec/template/spec/containers/0/env/-"
   value:
@@ -13,4 +14,3 @@
   value:
     name: "POSTGRESQL_EFFECTIVE_CACHE_SIZE"
     value: "512MB"
-
