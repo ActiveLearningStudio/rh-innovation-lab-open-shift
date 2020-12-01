@@ -18,10 +18,10 @@ spec:
       volumes:
         - name: curriki-tsugi
           persistentVolumeClaim:
-            claimName: curriki-tsugi
+            claimName: {{ include "curriki-tsugi.fullname" . }}
         - name: config-php-vol
           configMap:
-            name: curriki-tsugi
+            name: {{ include "curriki-tsugi.fullname" . }}
             defaultMode: 420
       initContainers:
         - name: init-container
