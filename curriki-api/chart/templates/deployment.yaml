@@ -70,7 +70,7 @@ spec:
         - name: curriki-api-fpm-prometheus
           livenessProbe:
             httpGet:
-              path: /
+              path: /metrics
               port: 8888
               scheme: HTTP
             timeoutSeconds: 1
@@ -104,11 +104,11 @@ spec:
         - name: curriki-api
           livenessProbe:
             httpGet:
-              path: /metrics
-              port: 8888
+              path: /
+              port: 8000
               scheme: HTTP
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 20
             successThreshold: 1
             failureThreshold: 3
           image: ' '
@@ -118,8 +118,8 @@ spec:
               path: /
               port: 8000
               scheme: HTTP
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 20
             successThreshold: 1
             failureThreshold: 3
           volumeMounts:
