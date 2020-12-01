@@ -1,0 +1,33 @@
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: acid-minimal-cluster-take2
+  namespace: awesome-zolando
+spec:
+  teamId: "acid"
+  volume:
+    size: 1Gi
+  numberOfInstances: 3
+  users:
+    curriki:  # database owner
+      - superuser
+      - createdb
+    curriki-replication: []  # role for application foo
+  databases:
+    currikidb: curriki  # dbname: owner
+  # preparedDatabases:
+  #   bar: {}
+  postgresql:
+    version: "12"
+    parameters:  # Expert section
+      shared_buffers: "512MB"
+      max_connections: "500"
+      log_statement: "all"
+  resources:
+    requests:
+      cpu: '500m'
+      memory: 3Gi
+    limits:
+      cpu: '2'
+      memory: 7Gi
+

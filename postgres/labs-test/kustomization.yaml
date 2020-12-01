@@ -21,3 +21,4 @@ patchesStrategicMerge:
 - postgresql-data-claim.yaml
 - postgresql-slave-deploymentconfig.yaml
 - postgresql-exporter-deployment.yaml
+- postgresql-zolando.yaml

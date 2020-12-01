@@ -13,3 +13,7 @@ resources:
 - postgresql-exporter-deployment.yaml
 - postgresql-exporter-service-monitoring.yaml
 - postgresql-exporter-service.yaml
+- postgresql-zolando-configmap.yaml
+- postgresql-zolando-operator.yaml
+- postgresql-zolando-rbac.yaml
+- postgresql-zolando-zolando-service.yaml
