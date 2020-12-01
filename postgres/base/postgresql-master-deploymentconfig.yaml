@@ -26,7 +26,7 @@ spec:
       initContainers:
       - name: enable-sync-commit
         image: gcr.io/google-containers/busybox:latest
-        command: [ 'sh', '-c', 'while [ ! -f /var/lib/pgsql/openshift-custom-postgresql.conf ]; do sleep 1; done; echo "synchronous_commit = on" >> /var/lib/pgsql/openshift-custom-postgresql.conf' ]
+        command: [ 'sh', '-c', 'while [ ! -f /var/lib/pgsql/openshift-custom-postgresql.conf ]; touch /var/lib/pgsql/openshift-custom-postgresql.conf; done; echo "synchronous_commit = on" >> /var/lib/pgsql/openshift-custom-postgresql.conf' ]
 
       containers:
       - args:
