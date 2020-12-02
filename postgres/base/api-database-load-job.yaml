@@ -30,12 +30,12 @@ spec:
         imagePullPolicy: Always
         command: [ "./load-database.sh" ]
         env:
-          - name: username
+          - name: PGUSER
             valueFrom:
               secretKeyRef:
                 name: postgres.curriki-postgresql.credentials
                 key: username
-          - name: password
+          - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
                 name: postgres.curriki-postgresql.credentials
