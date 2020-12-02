@@ -29,4 +29,8 @@ spec:
     limits:
       cpu: '2'
       memory: 7Gi
+  patroni:
+    synchronous_mode: true
+    synchronous_mode_strict: true
+
 
