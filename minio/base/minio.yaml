@@ -98,7 +98,7 @@ spec:
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: curriki
+  name: curriki-s3
   labels:
     app: curriki-s3
   annotations:
