@@ -7,6 +7,9 @@ namespace: labs-dev
 bases:
 - ../base
 
+resources:
+  - postgresql-zolando.yaml
+
 patchesStrategicMerge:
 #- postgresql-data-claim.yaml
 #- postgresql-slave-deploymentconfig.yaml
