@@ -14,12 +14,12 @@ spec:
         image: quay.io/eformat/curriki-database-load:latest
         command: ['sh', '-c', "until nslookup postgresql-master.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for postgres-master service; sleep 3; done"]
         env:
-          - name: username
+          - name: PGUSER
             valueFrom:
               secretKeyRef:
                 name: postgres.curriki-postgresql.credentials
                 key: username
-          - name: password
+          - name: PGPASSWORD
             valueFrom:
               secretKeyRef:
                 name: postgres.curriki-postgresql.credentials
