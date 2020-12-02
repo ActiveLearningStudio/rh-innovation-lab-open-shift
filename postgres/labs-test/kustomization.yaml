@@ -10,17 +10,17 @@ bases:
 resources:
   - postgresql-zolando.yaml
 
-patches:
-  - target:
-      kind: DeploymentConfig
-      name: postgresql-master
-    path: postgresql-deploymentconfig-env-connections.yaml
-  - target:
-      kind: DeploymentConfig
-      name: postgresql-slave
-    path: postgresql-deploymentconfig-env-connections.yaml
+#patches:
+#  - target:
+#      kind: DeploymentConfig
+#      name: postgresql-master
+#    path: postgresql-deploymentconfig-env-connections.yaml
+#  - target:
+#      kind: DeploymentConfig
+#      name: postgresql-slave
+#    path: postgresql-deploymentconfig-env-connections.yaml
 
 patchesStrategicMerge:
-- postgresql-data-claim.yaml
-- postgresql-slave-deploymentconfig.yaml
+#- postgresql-data-claim.yaml
+#- postgresql-slave-deploymentconfig.yaml
 - postgresql-exporter-deployment.yaml

@@ -4,11 +4,11 @@ kind: Kustomization
 
 resources:
 - pgadmin.yaml
-- postgresql-data-claim.yaml
-- postgresql-master-service.yaml
-- postgresql-slave-deploymentconfig.yaml
-- postgresql-slave-service.yaml
-- postgresql-master-deploymentconfig.yaml
+#- postgresql-data-claim.yaml
+#- postgresql-master-service.yaml
+#- postgresql-slave-deploymentconfig.yaml
+#- postgresql-slave-service.yaml
+#- postgresql-master-deploymentconfig.yaml
 - api-database-load-job.yaml
 - postgresql-exporter-deployment.yaml
 - postgresql-exporter-service-monitoring.yaml
