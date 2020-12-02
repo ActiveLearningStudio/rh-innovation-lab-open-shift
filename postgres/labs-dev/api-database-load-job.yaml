@@ -8,4 +8,4 @@ spec:
       initContainers:
       - name: wait-for-database
         image: quay.io/eformat/curriki-database-load:latest
-        command: ['sh', '-c', "until nslookup acid-minimal-cluster-labs-dev.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for postgres-master service; sleep 3; done"]
+        command: ['sh', '-c', "until nslookup postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for postgres-master service; sleep 3; done"]
