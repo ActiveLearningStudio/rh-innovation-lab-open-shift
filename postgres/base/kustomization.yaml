@@ -17,3 +17,4 @@ resources:
 - postgresql-zolando-operator.yaml
 - postgresql-zolando-zolando-service.yaml
 - postgresql-zolando-service-account.yaml
+- postgrsql-zolando-sa-binding.yaml
