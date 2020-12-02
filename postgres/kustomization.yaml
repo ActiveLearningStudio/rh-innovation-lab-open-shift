@@ -6,3 +6,4 @@ bases:
 #- dev-cluster
 - labs-dev
 - labs-test
+- zolando-rbac
