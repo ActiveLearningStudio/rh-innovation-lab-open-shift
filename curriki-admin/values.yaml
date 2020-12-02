@@ -1,0 +1,7 @@
+# OpenShift objects
+route: true
+replicas: 1
+image_repository: quay.io
+image_name: curriki-admin
+image_namespace: curriki
+image_version: latest

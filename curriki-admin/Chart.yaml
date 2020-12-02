@@ -1,0 +1,9 @@
+apiVersion: v2
+name: curriki-studio
+description: A Helm chart for installing Curriki Studio Admin
+type: application
+version: 0.0.1
+appVersion: 0.0.1
+home: GITHUB LOCATION FOR THE CHART
+maintainers:
+  - name: gulzaman

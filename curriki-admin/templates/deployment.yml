@@ -1,0 +1,77 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    {{- include "curriki-admin.labels" . | nindent 4 }}
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest","namespace":"labs-test"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"}]
+  name: curriki-admin
+spec:
+  replicas: {{.Values.replicas}}
+  selector:
+    matchLabels:
+      {{- include "curriki-admin.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+      {{- include "curriki-admin.selectorLabels" . | nindent 8 }}
+    spec:
+      volumes:
+        - name: admin-storage
+          emptyDir: {}
+        - name: curriki-admin-env
+          configMap:
+            name: {{ include "curriki-admin.fullname" . }}
+            defaultMode: 420
+      initContainers:
+        - name: init-container
+          image: ' '
+          command: [ "/bin/bash", "-c", "cd /var/www/html/storage && mkdir -p framework/views && mkdir -p framework/sessions && mkdir -p framework/cache/data && mkdir -p framework/testing && mkdir -p logs && mkdir -p app/public" ]
+          volumeMounts:
+            - mountPath: /var/www/html/storage
+              name: admin-storage
+      containers:
+        - name: curriki-admin
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 6000
+              scheme: HTTP
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          image: ' '
+          resources: {}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 6000
+              scheme: HTTP
+            timeoutSeconds: 2
+            periodSeconds: 10
+            successThreshold: 1
+            failureThreshold: 3
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: admin-storage
+              mountPath: /var/www/html/storage
+            - name: curriki-admin-env
+              mountPath: /var/www/html/.env
+              subPath: .env
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
