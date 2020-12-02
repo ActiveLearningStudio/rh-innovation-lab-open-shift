@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    {{- include "curriki-admin.labels" . | nindent 4 }}
+  name: {{ include "curriki-admin.fullname" . }}
+spec:
+  ports:
+    - name: 6000-tcp
+      protocol: TCP
+      port: 6000
+      targetPort: 6000
+  selector:
+    {{- include "curriki-admin.selectorLabels" . | nindent 4 }}
+    deploymentconfig: {{ include "curriki-admin.fullname" . }}
+  type: ClusterIP
+  sessionAffinity: None
