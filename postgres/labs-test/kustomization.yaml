@@ -9,6 +9,7 @@ bases:
 
 resources:
   - postgresql-zolando.yaml
+  - postgresql-zolando-role-bindings.yaml
 
 #patches:
 #  - target:
