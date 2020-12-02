@@ -28,7 +28,9 @@ applications:
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
-        enabled: true
+        enabled: false
+      istag:
+        enabled: false
     ignore_differences:
       ignoreDifferences:
         - group: apps
@@ -57,6 +59,8 @@ applications:
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
+        enabled: false
+      istag:
         enabled: false
     ignore_differences:
       ignoreDifferences:
