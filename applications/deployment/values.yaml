@@ -182,3 +182,47 @@ applications:
     project:
       name: curriki-labs-test
       enabled: true
+  curriki_admin_dev:
+    name: curriki-admin-dev
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-admin/chart
+    sync_policy_automated: true
+    destination: labs-dev
+    source_ref: main
+    values:
+      fullnameOverride: curriki-admin
+      image_repository: image-registry.openshift-image-registry.svc:5000
+      image_name: curriki-admin
+    ignore_differences:
+      ignoreDifferences:
+        - group: apps
+          kind: Deployment
+          jsonPointers:
+            - /spec/template/spec/initContainers/0/image
+            - /spec/template/spec/containers/0/image
+    project:
+      name: curriki-labs-dev
+      enabled: true
+  curriki_admin_test:
+    name: curriki-admin-test
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git
+    source_path: curriki-admin/chart
+    sync_policy_automated: true
+    destination: labs-test
+    source_ref: main
+    values:
+      fullnameOverride: curriki-admin
+      image_repository: image-registry.openshift-image-registry.svc:5000
+      image_name: curriki-admin
+    ignore_differences:
+      ignoreDifferences:
+        - group: apps
+          kind: Deployment
+          jsonPointers:
+            - /spec/template/spec/initContainers/0/image
+            - /spec/template/spec/containers/0/image
+    project:
+      name: curriki-labs-test
+      enabled: true
