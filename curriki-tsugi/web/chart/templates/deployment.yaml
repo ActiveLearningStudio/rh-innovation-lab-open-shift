@@ -44,8 +44,8 @@ spec:
               path: /tsugi
               port: 9999
               scheme: HTTP
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 20
             successThreshold: 1
             failureThreshold: 3
           ports:
@@ -56,8 +56,8 @@ spec:
               path: /
               port: 9999
               scheme: HTTP
-            timeoutSeconds: 1
-            periodSeconds: 10
+            timeoutSeconds: 10
+            periodSeconds: 20
             successThreshold: 1
             failureThreshold: 3
           volumeMounts:
