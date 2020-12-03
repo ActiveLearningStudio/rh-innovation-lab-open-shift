@@ -28,6 +28,4 @@ spec:
     contextDir: /
   triggers:
   - type: ConfigChange
-  - imageChange: {}
-    type: ImageChange
   runPolicy: Serial
