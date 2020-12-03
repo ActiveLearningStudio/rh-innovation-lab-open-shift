@@ -27,7 +27,7 @@ spec:
       initContainers:
         - name: init-container
           image: quay.io/curriki/tsugi-web
-          command: [ "/bin/bash", "-c", "/usr/local/bin/curriki-mod-init.sh" ]
+          command: [ "/bin/bash", "-c", "rm -rf /var/www/html/mod/curriki/src/* && /usr/local/bin/curriki-mod-init.sh" ]
           volumeMounts:
           - mountPath: /var/www/html/mod/curriki
             name: curriki-tsugi
