@@ -3,7 +3,7 @@ apiVersion: apps/v1
 metadata:
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest","namespace":"ali-new-project"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"},{"from":{"kind":"ImageStreamTag","name":"{{ .Values.image_name }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"},{"from":{"kind":"ImageStreamTag","name":"{{ .Values.image_name }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"}]
   name: {{.Chart.Name}}
   labels:
     app: {{.Chart.Name}}
