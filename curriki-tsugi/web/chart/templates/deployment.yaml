@@ -9,7 +9,8 @@ spec:
   selector:
     matchLabels:
     {{- include "curriki-tsugi.selectorLabels" . | nindent 6 }}
-  strategy: {}
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -67,5 +68,3 @@ spec:
               subPath: config.php
       restartPolicy: Always
       serviceAccountName: ""
-      strategy:
-        type: Recreate
