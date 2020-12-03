@@ -63,6 +63,7 @@ applications:
         enabled: false
       istag:
         enabled: false
+      image_version: 1.0.0
     ignore_differences:
       ignoreDifferences:
         - group: apps
