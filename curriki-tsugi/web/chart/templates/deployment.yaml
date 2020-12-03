@@ -67,3 +67,5 @@ spec:
               subPath: config.php
       restartPolicy: Always
       serviceAccountName: ""
+      strategy:
+        type: Recreate
