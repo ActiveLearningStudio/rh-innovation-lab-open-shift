@@ -1,15 +1,15 @@
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: h5p-temp-fast-storage
-  labels:
-  {{- include "curriki-api.labels" . | nindent 4 }}
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: gp2-new
-  volumeMode: Filesystem
+{{/*---*/}}
+{{/*kind: PersistentVolumeClaim*/}}
+{{/*apiVersion: v1*/}}
+{{/*metadata:*/}}
+{{/*  name: h5p-temp-fast-storage*/}}
+{{/*  labels:*/}}
+{{/*  {{- include "curriki-api.labels" . | nindent 4 }}*/}}
+{{/*spec:*/}}
+{{/*  accessModes:*/}}
+{{/*    - ReadWriteOnce*/}}
+{{/*  resources:*/}}
+{{/*    requests:*/}}
+{{/*      storage: 5Gi*/}}
+{{/*  storageClassName: gp2-new*/}}
+{{/*  volumeMode: Filesystem*/}}
