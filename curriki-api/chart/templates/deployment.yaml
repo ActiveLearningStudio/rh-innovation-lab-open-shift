@@ -21,7 +21,7 @@ spec:
       volumes:
         - name: h5p-storage
           persistentVolumeClaim:
-            claimName: h5p-storage
+            claimName: h5p-shared-storage
         - name: h5p-temp-fast-api-storage
           persistentVolumeClaim:
             claimName: h5p-temp-fast-api-storage

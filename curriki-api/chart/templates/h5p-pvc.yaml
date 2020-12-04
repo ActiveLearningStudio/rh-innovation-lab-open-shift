@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: h5p-storage
+  name: h5p-shared-storage
   labels:
     {{- include "curriki-api.labels" . | nindent 4 }}
 spec:
