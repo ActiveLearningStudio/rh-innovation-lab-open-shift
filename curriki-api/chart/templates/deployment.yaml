@@ -22,7 +22,7 @@ spec:
         - name: h5p-storage
           persistentVolumeClaim:
             claimName: h5p-storage
-        - name: h5p-temp-fast-stroage
+        - name: h5p-temp-fast-storage
           persistentVolumeClaim:
             claimName: h5p-temp-fast-storage
         - name: curriki-api-env
