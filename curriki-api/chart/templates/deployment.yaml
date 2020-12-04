@@ -38,21 +38,21 @@ spec:
           - mountPath: /var/www/html/storage
             name: h5p-storage
       containers:
-        - name: curriki-api-fast-copy
-          image: 'quay.io/masood_faisal/fast-copy:0.0.1'
-          resources: { }
-          volumeMounts:
-            - name: h5p-storage
-              mountPath: /var/www/html/storage
-            - name: curriki-api-env
-              mountPath: /var/www/html/.env
-              subPath: .env
-            - name: curriki-api-echo-server
-              mountPath: /var/www/html/laravel-echo-server.json
-              subPath: laravel-echo-server.json
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          imagePullPolicy: Always
+{{/*        - name: curriki-api-fast-copy*/}}
+{{/*          image: 'quay.io/masood_faisal/fast-copy:0.0.1'*/}}
+{{/*          resources: { }*/}}
+{{/*          volumeMounts:*/}}
+{{/*            - name: h5p-storage*/}}
+{{/*              mountPath: /var/www/html/storage*/}}
+{{/*            - name: curriki-api-env*/}}
+{{/*              mountPath: /var/www/html/.env*/}}
+{{/*              subPath: .env*/}}
+{{/*            - name: curriki-api-echo-server*/}}
+{{/*              mountPath: /var/www/html/laravel-echo-server.json*/}}
+{{/*              subPath: laravel-echo-server.json*/}}
+{{/*          terminationMessagePath: /dev/termination-log*/}}
+{{/*          terminationMessagePolicy: File*/}}
+{{/*          imagePullPolicy: Always*/}}
         - name: curriki-api-fpm
           livenessProbe:
             tcpSocket:
