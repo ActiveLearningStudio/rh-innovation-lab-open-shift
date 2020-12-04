@@ -86,8 +86,8 @@ spec:
             - name: curriki-api-echo-server
               mountPath: /var/www/html/laravel-echo-server.json
               subPath: laravel-echo-server.json
-            - name: h5p-temp-fast-storage
-              mountPath: /var/www/html/storage/app/public/h5p/temp
+{{/*            - name: h5p-temp-fast-storage*/}}
+{{/*              mountPath: /var/www/html/storage/app/public/h5p/temp*/}}
 
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
