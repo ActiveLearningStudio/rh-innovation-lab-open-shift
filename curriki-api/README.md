@@ -2,5 +2,5 @@
 
 ```bash
 helm package chart
-helm install curriki-admin ./curriki-admin-0.0.1.tgz
+helm install curriki-api ./curriki-api-1.0.0.tgz
 ```
