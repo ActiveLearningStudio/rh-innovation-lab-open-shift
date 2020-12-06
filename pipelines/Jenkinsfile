@@ -61,7 +61,9 @@ pipeline {
                     openshift.withCluster(/* cluster deets */) {
                         openshift.newProject("${DEST_RUN_PROJECT}")
                         openshift.withProject("${DEST_RUN_PROJECT}") {
-                            // do something
+                            // add secrets
+                            // install infrastructure
+                            // install application helm charts
                         }
                     }
                     //}
