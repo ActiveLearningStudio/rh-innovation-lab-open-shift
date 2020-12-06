@@ -196,6 +196,7 @@ applications:
       fullnameOverride: curriki-admin
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-admin
+      image_version: 0.0.1
     ignore_differences:
       ignoreDifferences:
         - group: apps
@@ -218,6 +219,7 @@ applications:
       fullnameOverride: curriki-admin
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-admin
+      image_version: 0.0.1
     ignore_differences:
       ignoreDifferences:
         - group: apps

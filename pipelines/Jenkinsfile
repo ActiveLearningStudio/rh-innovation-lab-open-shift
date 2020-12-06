@@ -1,0 +1,76 @@
+pipeline {
+    agent {
+        label "master"
+    }
+
+    environment {
+        // Global Vars
+        NAME = "add-client"
+        ARGOCD_CONFIG_REPO = "github.com/ActiveLearningStudio/rh-innovation-lab-open-shift.git"
+        ARGOCD_CONFIG_REPO_BRANCH = "main"
+
+        // Job name contains the branch eg ds-app-feature%2Fjenkins-123
+        JOB_NAME = "${JOB_NAME}".replace("%2F", "-").replace("/", "-")
+        GIT_SSL_NO_VERIFY = true
+
+        // Credentials bound in OpenShift
+        GIT_CREDS = credentials("${OPENSHIFT_BUILD_NAMESPACE}-git-auth")
+        NEXUS_CREDS = credentials("${OPENSHIFT_BUILD_NAMESPACE}-nexus-password")
+        ARGOCD_CREDS = credentials("${OPENSHIFT_BUILD_NAMESPACE}-argocd-token")
+
+        // Nexus Artifact repo
+        NEXUS_REPO_NAME="labs-static"
+        NEXUS_REPO_HELM = "helm-charts"
+    }
+
+    parameters {
+        choice(name: 'CLOUD', choices: 'aws\ngcp\nazure\nbare metal', description: 'Deployment Cloud')
+        string(name: 'OPENSHIFT_VERSION', defaultValue: 'latest', description: "Deploy OpenShift cluster version")
+        string(name: 'CURRIKI_VERSION', defaultValue: 'latest', description: "Deploy Curriki Studio version")
+        // cluster creds for now
+        string(name: 'DEST_REGISTRY', defaultValue: 'docker://docker-registry.apps.curriki.apac-1.rht-labs.com', description: "Cluster 1 Destination Image Registry")
+        string(name: 'DEST_CLUSTER', defaultValue: 'insecure://api.curriki.apac-1.rht-labs.com:6443', description: "Destination Cluster 1 API address")        
+        string(name: 'DEST_RUN_PROJECT', defaultValue: 'curriki-client', description: "Destination Project For Client")
+    }
+
+    // The options directive is for configuration that applies to the whole job.
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '50', artifactNumToKeepStr: '1'))
+        timeout(time: 60, unit: 'MINUTES')
+        ansiColor('xterm')
+        timestamps()
+    }
+
+    stages {
+        // https://github.com/openshift/jenkins-client-plugin
+
+        // TTD - Deploy OpenShift / OSD / Hive etc, get cluster credentials
+
+        stage("Setup client") {
+            options {
+                skipDefaultCheckout(true)
+            }
+            agent {
+                node {
+                    label "master"
+                }
+            }
+            steps {
+                script {
+                    //withCredentials([string(credentialsId: 'DEST1_CREDS', variable: 'DEST1_CREDS')]) {
+                    openshift.withCluster(/* cluster deets */) {
+                        openshift.newProject("${DEST_RUN_PROJECT}")
+                        openshift.withProject("${DEST_RUN_PROJECT}") {
+                            // bootstrap argocd
+                            // install infrastructure
+                            // add app secrets
+                            // install applications
+                            // configure applications for client
+                        }
+                    }
+                    //}
+                }
+            }
+        }
+    }
+}

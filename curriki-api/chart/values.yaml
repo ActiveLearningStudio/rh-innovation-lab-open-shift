@@ -1,5 +1,5 @@
 builds:
-  enabled: false
+  enabled: true
   git_url: https://github.com/imcoder001/curriki-docker
 istag:
   enabled: true
