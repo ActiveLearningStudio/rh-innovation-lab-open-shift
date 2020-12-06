@@ -61,9 +61,11 @@ pipeline {
                     openshift.withCluster(/* cluster deets */) {
                         openshift.newProject("${DEST_RUN_PROJECT}")
                         openshift.withProject("${DEST_RUN_PROJECT}") {
-                            // add secrets
+                            // bootstrap argocd
                             // install infrastructure
-                            // install application helm charts
+                            // add app secrets
+                            // install applications
+                            // configure applications for client
                         }
                     }
                     //}
