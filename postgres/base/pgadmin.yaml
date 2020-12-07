@@ -37,12 +37,26 @@ items:
       {
         "Servers": {
           "1": {
-            "Name": "curriki",
+            "Name": "curriki-master",
             "Group": "Servers",
-            "Host": "postgresql-master",
+            "Host": "curriki-postgresql",
             "Port": 5432,
             "MaintenanceDB": "currikidb",
-            "Username": "pguser",
+            "Username": "curriki",
+            "SSLMode": "prefer",
+            "SSLCompression": 0,
+            "Timeout": 0,
+            "UseSSHTunnel": 0,
+            "TunnelPort": "22",
+            "TunnelAuthentication": 0
+          },
+          "2": {
+            "Name": "curriki-replica",
+            "Group": "Servers",
+            "Host": "curriki-postgresql-repl",
+            "Port": 5432,
+            "MaintenanceDB": "currikidb",
+            "Username": "curriki-replication",
             "SSLMode": "prefer",
             "SSLCompression": 0,
             "Timeout": 0,
