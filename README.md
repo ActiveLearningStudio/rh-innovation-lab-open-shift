@@ -12,15 +12,13 @@ This repository provides all of the OpenShift Configurations and resources neede
 
 The following middleware is required to support the CurrikiStudion deployment:
 
-[`yugabyte`](yugabyte) - yugabyte database operator
-
 [`minio`](minio) - minimal minio (s3 server) setup with perssitent volumes on openshift
 
 [`elastic`](elastic) - elastic search cluster and kibana operator
 
 [`redis`](redis) - redis cluster operator
 
-[`mysql`](ysql) - mysql database instance
+[`mysql`](mysql) - mysql database instance
 
 [`postgres`](postgres) - postgresql  master, read-replica cluster
 
@@ -33,3 +31,7 @@ The following middleware is required to support the CurrikiStudion deployment:
 [`curriki-admin`](curriki-admin) - The CurrikiStudio Admin Application
 
 [`curriki-tsugi`](curriki-tsugi) - The CurrikiStudio Tsugi LMS Integration
+
+## Experimental
+
+[`yugabyte`](yugabyte) - yugabyte database operator

@@ -104,26 +104,8 @@ spec:
           terminationMessagePolicy: File
           imagePullPolicy: Always
         - name: curriki-api
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8000
-              scheme: HTTP
-            timeoutSeconds: 10
-            periodSeconds: 20
-            successThreshold: 1
-            failureThreshold: 3
           image: ' '
           resources: {}
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8000
-              scheme: HTTP
-            timeoutSeconds: 10
-            periodSeconds: 20
-            successThreshold: 1
-            failureThreshold: 3
           volumeMounts:
             - name: h5p-storage
               mountPath: /var/www/html/storage
@@ -194,9 +176,6 @@ spec:
       securityContext: {}
       schedulerName: default-scheduler
   strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 25%
-      maxSurge: 25%
+    type: Recreate
   revisionHistoryLimit: 10
   progressDeadlineSeconds: 600
