@@ -4,7 +4,7 @@ description: A Helm chart for installing Curriki API Studio
 type: application
 version: 0.0.1
 appVersion: 0.0.1
-home: GITHUB LOCATION FOR THE CHART
+home: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
 maintainers:
   - name: eformat
   - name: masoodfaisal
