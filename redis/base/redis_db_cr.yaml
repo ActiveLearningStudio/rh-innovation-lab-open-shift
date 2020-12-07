@@ -3,6 +3,6 @@ kind: RedisEnterpriseDatabase
 metadata:
   name: currikidb
 spec:
-  memory: 500MB
+  memorySize: 500MB
   redisEnterpriseCluster:
     name: rec

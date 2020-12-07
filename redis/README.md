@@ -28,3 +28,6 @@ There is a route defined for redis enterprise, you can login by getting these th
 oc get secret rec -o=jsonpath='{.data.username}' | base64 --decode; echo
 oc get secret rec -o=jsonpath='{.data.password}' | base64 --decode; echo
 ```
+
+
+[Redis DB CRD](https://github.com/RedisLabs/redis-enterprise-k8s-docs/blob/master/redis_enterprise_database_api.md#redisenterprisedatabasespec)
