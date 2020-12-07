@@ -1,12 +1,10 @@
+---
 kind: Service
 apiVersion: v1
 metadata:
-  name: curriki-admin
+  name: {{ include "curriki-admin.fullname" . }}
   labels:
-    app: curriki-admin
-    app.kubernetes.io/component: curriki-admin
-    app.kubernetes.io/instance: curriki-admin
-    app.kubernetes.io/part-of: curriki
+    {{- include "curriki-admin.labels" . | nindent 4 }}
 spec:
   ports:
     - name: 6000-tcp
@@ -14,7 +12,6 @@ spec:
       port: 6000
       targetPort: 6000
   selector:
-    app: curriki-admin
-    deploymentconfig: curriki-admin
+    {{- include "curriki-admin.selectorLabels" . | nindent 4 }}
   type: ClusterIP
   sessionAffinity: None

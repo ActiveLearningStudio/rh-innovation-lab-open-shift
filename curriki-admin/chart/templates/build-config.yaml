@@ -1,12 +1,11 @@
+{{- if (eq .Values.builds.enabled true) }}
+---
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: {{.Chart.Name}}
+  name: {{ include "curriki-admin.fullname" . }}
   labels:
-    app: {{.Chart.Name}}
-    app.kubernetes.io/component: {{.Chart.Name}}
-    app.kubernetes.io/instance: {{.Chart.Name}}
-    app.kubernetes.io/part-of: curriki
+    {{- include "curriki-admin.labels" . | nindent 4 }}
 spec:
   nodeSelector: null
   output:
@@ -29,3 +28,4 @@ spec:
   triggers:
   - type: ConfigChange
   runPolicy: Serial
+{{ end }}

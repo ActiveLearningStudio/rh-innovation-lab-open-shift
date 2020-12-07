@@ -4,8 +4,7 @@ apiVersion: v1
 metadata:
   name: admin-storage
   labels:
-    app: curriki-admin
-
+    {{- include "curriki-admin.labels" . | nindent 4 }}
 spec:
   accessModes:
     - ReadWriteMany

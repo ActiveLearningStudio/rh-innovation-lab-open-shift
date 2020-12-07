@@ -3,24 +3,19 @@ apiVersion: apps/v1
 metadata:
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"curriki-admin:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"},{"from":{"kind":"ImageStreamTag","name":"{{ .Values.image_name }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"}]
-  name: {{.Chart.Name}}
+      [{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-admin.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-admin\")].image","pause":"false"},{"from":{"kind":"ImageStreamTag","name":"{{ .Values.image_name }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"}]
+  name: {{ include "curriki-admin.fullname" . }}
   labels:
-    app: {{.Chart.Name}}
-    app.kubernetes.io/component: {{.Chart.Name}}
-    app.kubernetes.io/instance: {{.Chart.Name}}
-    app.kubernetes.io/part-of: curriki
+    {{- include "curriki-admin.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: curriki-admin
+    {{- include "curriki-admin.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: curriki-admin
-        deploymentconfig: curriki-admin
+        {{- include "curriki-admin.selectorLabels" . | nindent 8 }}
     spec:
       volumes:
         - name: admin-storage

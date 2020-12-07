@@ -197,6 +197,10 @@ applications:
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-admin
       image_version: 0.0.1
+      builds:
+        enabled: false
+      istag:
+        enabled: false
     ignore_differences:
       ignoreDifferences:
         - group: apps
@@ -220,6 +224,10 @@ applications:
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-admin
       image_version: 0.0.1
+      builds:
+        enabled: false
+      istag:
+        enabled: false
     ignore_differences:
       ignoreDifferences:
         - group: apps

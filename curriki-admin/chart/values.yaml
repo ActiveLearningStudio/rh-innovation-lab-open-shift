@@ -1,7 +1,8 @@
 builds:
   enabled: true
   git_url: https://github.com/imcoder001/curriki-docker
-
+istag:
+  enabled: true
 # OpenShift objects
 route: true
 replicas: 1

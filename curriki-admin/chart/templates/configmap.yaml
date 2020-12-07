@@ -1,7 +1,10 @@
+---
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: curriki-admin
+  name: {{ include "curriki-admin.fullname" . }}
+  labels:
+    {{- include "curriki-admin.labels" . | nindent 4 }}
 data:
   .env: |-
     APP_NAME="Curriki Admin Panel"
