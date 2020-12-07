@@ -8,7 +8,7 @@ spec:
       volumes:
         - name: h5p-storage
           persistentVolumeClaim:
-            claimName: h5p-storage
+            claimName: h5p-shared-storage
         - name: curriki-api-env
           secret:
             defaultMode: 420
