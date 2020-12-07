@@ -10,3 +10,4 @@ bases:
 - operator-labs-test
 - labs-dev
 - labs-test
+- operator-labs-staging
