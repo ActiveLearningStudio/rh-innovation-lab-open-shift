@@ -6,7 +6,6 @@ metadata:
     app: curriki-postgres-exporter
     app.kubernetes.io/component: curriki-postgres-exporter
     app.kubernetes.io/instance: curriki-postgres-exporter
-    app.openshift.io/runtime-namespace: awesome-curriki
 spec:
   template:
     metadata:
