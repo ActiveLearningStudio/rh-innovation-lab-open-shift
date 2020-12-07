@@ -7,3 +7,4 @@ bases:
 - labs-dev
 - labs-test
 - zolando-rbac
+- labs-staging

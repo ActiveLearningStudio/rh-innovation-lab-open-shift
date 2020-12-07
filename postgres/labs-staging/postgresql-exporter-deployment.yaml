@@ -1,0 +1,25 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: curriki-postgres-exporter
+  labels:
+    app: curriki-postgres-exporter
+    app.kubernetes.io/component: curriki-postgres-exporter
+    app.kubernetes.io/instance: curriki-postgres-exporter
+    app.openshift.io/runtime-namespace: awesome-curriki
+spec:
+  template:
+    metadata:
+      labels:
+        app: curriki-postgres-exporter
+        deploymentconfig: curriki-postgres-exporter
+      annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+    spec:
+      containers:
+        - name: curriki-postgres-exporter
+          env:
+            - name: DATA_SOURCE_NAME
+              value: >-
+                postgresql://pguser:password@curriki-postgresql.labs-staging.svc.cluster.local:5432/currikidb?sslmode=disable

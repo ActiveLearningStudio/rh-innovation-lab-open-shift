@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: labs-test
+
+bases:
+- ../base
+
+resources:
+  - postgresql-zolando.yaml
+  - postgresql-zolando-role-bindings.yaml
+
+#patches:
+#  - target:
+#      kind: DeploymentConfig
+#      name: postgresql-master
+#    path: postgresql-deploymentconfig-env-connections.yaml
+#  - target:
+#      kind: DeploymentConfig
+#      name: postgresql-slave
+#    path: postgresql-deploymentconfig-env-connections.yaml
+
+patchesStrategicMerge:
+#- postgresql-data-claim.yaml
+#- postgresql-slave-deploymentconfig.yaml
+- postgresql-exporter-deployment.yaml
+- api-database-load-job.yaml
