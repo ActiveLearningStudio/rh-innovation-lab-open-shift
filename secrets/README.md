@@ -25,7 +25,7 @@ pod=$(oc -n labs-ci-cd get secret -l sealedsecrets.bitnami.com/sealed-secrets-ke
 sed -i -e "s|name:.*|name: ${pod##secret/}|" sealed-secret-master.key
 oc replace -f sealed-secret-master.key
 # restart sealedsecret controller pod
-oc delete pod -n kube-system -l name=sealed-secrets-controller
+oc delete pod -n labs-ci-cd -l name=sealed-secrets-controller
 ```
 
 `kubeseal` Client for generating secrets
