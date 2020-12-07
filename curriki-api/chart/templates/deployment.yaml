@@ -176,6 +176,6 @@ spec:
       securityContext: {}
       schedulerName: default-scheduler
   strategy:
-    type: Recreate
+    type: RollingUpdate
   revisionHistoryLimit: 10
   progressDeadlineSeconds: 600
