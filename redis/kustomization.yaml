@@ -11,3 +11,4 @@ bases:
 - labs-dev
 - labs-test
 - operator-labs-staging
+- labs-staging
