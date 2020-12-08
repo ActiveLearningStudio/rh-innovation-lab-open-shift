@@ -96,6 +96,9 @@ pipeline {
                             
                             helm install --dependency-update $CUSTOMER-admin curriki/curriki-admin --set image_repository=image-registry.openshift-image-registry.svc:5000 --set image_namespace=$NAMESPACE --set image_name=curriki-admin --set image_version=latest --set builds.enabled=false --set istag.enabled=false
                             oc tag labs-ci-cd/curriki-admin:latest $NAMESPACE/$CUSTOMER-admin-curriki-admin:latest
+
+                            helm install --dependency-update $CUSTOMER-admin curriki/curriki-admin --set image_repository=image-registry.openshift-image-registry.svc:5000 --set image_namespace=$NAMESPACE --set image_name=curriki-admin --set image_version=latest --set builds.enabled=false --set istag.enabled=false --set app_url=http://ali-admin-curriki-admin-labs-staging.apps.curriki.apac-1.rht-labs.com --set api_url=http://ali-ui-curriki-ui-labs-staging.apps.curriki.apac-1.rht-labs.com/api/api --set front_end_url=http://ali-ui-curriki-ui-labs-staging.apps.curriki.apac-1.rht-labs.com --set api_img_url=http://ali-ui-curriki-ui-labs-staging.apps.curriki.apac-1.rht-labs.com/api
+                            oc tag labs-ci-cd/curriki-admin:latest $NAMESPACE/$CUSTOMER-admin-curriki-admin:latest
                             */
                         }
                     }
