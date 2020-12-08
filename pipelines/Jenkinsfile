@@ -66,6 +66,34 @@ pipeline {
                             // add app secrets
                             // install applications
                             // configure applications for client
+
+                            /*
+
+                            NAMESPACE=labs-staging
+                            CUSTOMER=ali
+                            oc new-project $NAMESPACE
+                            --
+                            helm repo add curriki https://nexus-labs-ci-cd.apps.curriki.apac-1.rht-labs.com/repository/helm-charts
+                            -- api
+                            helm install --dependency-update $CUSTOMER-api curriki/curriki-api --set image_repository=image-registry.openshift-image-registry.svc:5000 --set image_namespace=$NAMESPACE --set image_name=curriki-api --set image_version=latest --set builds.enabled=false --set istag.enabled=false
+                            oc tag labs-ci-cd/curriki-api:latest $NAMESPACE/$CUSTOMER-api-curriki-api:latest
+                            oc tag labs-ci-cd/curriki-api-base:latest $NAMESPACE/$CUSTOMER-api-curriki-api-base:latest
+                            oc tag labs-ci-cd/curriki-api-fpm:latest $NAMESPACE/$CUSTOMER-api-curriki-api-fpm:latest
+                            -- ui
+                            helm install --dependency-update $CUSTOMER-ui curriki/curriki-ui --set image_repository=image-registry.openshift-image-registry.svc:5000 --set image_namespace=$NAMESPACE --set image_name=curriki-ui --set image_version=latest --set builds.enabled=false --set istag.enabled=false
+                            oc tag labs-ci-cd/curriki-ui:latest $NAMESPACE/$CUSTOMER-ui-curriki-ui:latest
+                            --
+                            oc patch route/$CUSTOMER-api-curriki-api-api --patch "{\"spec\":{\"host\": \"$(oc get route $CUSTOMER-ui-curriki-ui -o custom-columns=ROUTE:.spec.host --no-headers)\"}}" --type=merge
+                            oc patch route/$CUSTOMER-api-curriki-api-storage --patch "{\"spec\":{\"host\": \"$(oc get route $CUSTOMER-ui-curriki-ui -o custom-columns=ROUTE:.spec.host --no-headers)\"}}" --type=merge
+                            oc patch route/$CUSTOMER-api-curriki-api-socket --patch "{\"spec\":{\"host\": \"$(oc get route $CUSTOMER-ui-curriki-ui -o custom-columns=ROUTE:.spec.host --no-headers)\"}}" --type=merge
+                            --
+                            helm install curriki/curriki-admin
+                            helm install curriki/curriki-tsugi
+                            oc tag labs-ci-cd/curriki-admin:latest $NAMESPACE/curriki-admin:latest
+                            oc tag labs-ci-cd/curriki-tsugi:latest $NAMESPACE/curriki-tsugi:latest
+
+
+                            */
                         }
                     }
                     //}
