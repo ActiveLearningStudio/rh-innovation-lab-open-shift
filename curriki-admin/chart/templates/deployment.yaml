@@ -22,7 +22,7 @@ spec:
           emptyDir: {}
         - name: curriki-admin-env
           configMap:
-            name: curriki-admin
+            name: {{ include "curriki-admin.fullname" . }}
             defaultMode: 420
       initContainers:
         - name: init-container
