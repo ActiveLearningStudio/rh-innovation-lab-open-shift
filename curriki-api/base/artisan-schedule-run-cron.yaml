@@ -1,4 +1,4 @@
-apiVersion: batch/v1
+apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   name: artisan-schedule-run-cron
@@ -26,9 +26,21 @@ spec:
             command: ['sh', '-c', "until nslookup curriki-postgresql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for curriki-postgres service; sleep 3; done"]
           containers:
           - name: schedule-run-cron
-            image: quay.io/fahad_curriki/curriki-artisan-schedule-run:latest
+            image: quay.io/masood_faisal/curriki-artisan-schedule-run:latest
             imagePullPolicy: Always
             command: [ "./schedule-run.sh" ]
+            env:
+              - name: PGPASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    key: password
+                    name: curriki.curriki-postgresql.credentials
+              - name: USERNAME
+                valueFrom:
+                  secretKeyRef:
+                    key: username
+                    name: curriki.curriki-postgresql.credentials
+
             volumeMounts:
               - name: h5p-storage
                 mountPath: /var/www/html/storage
