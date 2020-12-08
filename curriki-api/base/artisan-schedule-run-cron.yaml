@@ -49,4 +49,4 @@ spec:
                 subPath: .env
 
 
-          restartPolicy: Never
+          restartPolicy: OnFailure

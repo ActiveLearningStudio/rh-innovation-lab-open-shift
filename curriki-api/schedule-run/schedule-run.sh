@@ -13,7 +13,7 @@ while true; do
     exit 0
   else
     echo " 🏗 schema table found - schedule 🏗";
-    php /var/www/html/artisan schedule:run >> /dev/null 2>&1
+    php /var/www/html/artisan schedule:run
     exit 0
   fi
   sleep 5
