@@ -8,7 +8,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: curriki-admin
+    name: {{ include "curriki-admin.fullname" . }}
     weight: 100
   port:
     targetPort: 6000-tcp
