@@ -26,6 +26,17 @@ spec:
         image: quay.io/masood_faisal/curriki-es-index-load:latest
         imagePullPolicy: Always
         command: [ "./load-index.sh" ]
+        env:
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: curriki.curriki-postgresql.credentials
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: username
+                name: curriki.curriki-postgresql.credentials
         volumeMounts:
           - name: h5p-storage
             mountPath: /var/www/html/storage
