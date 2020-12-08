@@ -92,6 +92,9 @@ pipeline {
                             oc tag labs-ci-cd/curriki-admin:latest $NAMESPACE/curriki-admin:latest
                             oc tag labs-ci-cd/curriki-tsugi:latest $NAMESPACE/curriki-tsugi:latest
 
+                            helm install --dependency-update $CUSTOMER-tsugi curriki/curriki-tsugi --set image_repository=image-registry.openshift-image-registry.svc:5000 --set image_namespace=$NAMESPACE --set image_name=curriki-tsugi --set image_version=latest --set builds.enabled=false --set istag.enabled=false
+                            oc tag labs-ci-cd/curriki-tsugi:latest $NAMESPACE/$CUSTOMER-tsugi-curriki-tsugi:latest
+                            
 
                             */
                         }
