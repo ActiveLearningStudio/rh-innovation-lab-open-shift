@@ -11,10 +11,10 @@ data:
     APP_ENV=local
     APP_KEY=base64:RtLARzJDyirX8KABkQTkotkzE/aSgsFccC8jGqqg0Tg=
     APP_DEBUG=true
-    APP_URL=http://curriki-admin-ali-new-project.apps.curriki.apac-1.rht-labs.com
-    API_URL=http://curriki-ui-ali-new-project.apps.curriki.apac-1.rht-labs.com/api/api
-    FRONT_END_URL=http://curriki-ui-ali-new-project.apps.curriki.apac-1.rht-labs.com
-    API_IMG_URL=http://curriki-ui-ali-new-project.apps.curriki.apac-1.rht-labs.com/api
+    APP_URL={{.Values.app_url}}
+    API_URL={{.Values.api_url}}
+    FRONT_END_URL={{.Values.front_end_url}}
+    API_IMG_URL={{.Values.api_img_url}}
     LOG_CHANNEL=stack
 
     DB_CONNECTION=null
