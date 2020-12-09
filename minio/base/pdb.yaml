@@ -1,0 +1,12 @@
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: curriki-s3
+  labels:
+    app: curriki-s3
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: curriki-s3

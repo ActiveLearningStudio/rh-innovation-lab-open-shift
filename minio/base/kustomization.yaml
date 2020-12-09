@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
 - minio-createbucket.yaml
 - minio.yaml
+- pdb.yaml
