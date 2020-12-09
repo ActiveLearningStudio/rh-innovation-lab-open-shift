@@ -1,0 +1,12 @@
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "curriki-admin.fullname" . }}
+  labels:
+    {{- include "curriki-admin.labels" . | nindent 4 }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      deploymentconfig: {{ include "curriki-admin.fullname" . }}

@@ -51,4 +51,5 @@ Selector labels
 app.kubernetes.io/name: {{ include "curriki-tsugi.name" . }}
 app.kubernetes.io/component: {{ include "curriki-tsugi.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+deploymentconfig: {{ include "curriki-tsugi.fullname" . }}
 {{- end -}}

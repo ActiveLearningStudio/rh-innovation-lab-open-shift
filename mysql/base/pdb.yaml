@@ -1,0 +1,12 @@
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: mysql

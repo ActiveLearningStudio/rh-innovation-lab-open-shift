@@ -24,6 +24,10 @@ Use `elastic` user and password to login to kibana
 oc get secret my-escluster-es-elastic-user -o=jsonpath='{.data.elastic}' | base64 --decode; echo
  ```
 
+Use `elastic-internal` for internal services to connect
+```bash
+oc get secret my-escluster-es-internal-users -o=jsonpath='{.data.elastic-internal}' | base64 --decode; echo
+```
 
 ### Reference
 [https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-create-index.html](Create Index ) in ES via PUT commans
