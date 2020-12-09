@@ -9,3 +9,4 @@ bases:
 - mysql
 - elastic
 - minio
+- jaeger
