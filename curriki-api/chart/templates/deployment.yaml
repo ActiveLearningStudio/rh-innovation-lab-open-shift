@@ -43,7 +43,7 @@ spec:
         - name: curriki-api-fpm
           env:
             - name: jaeger_service
-              value: jaeger-all-in-one-inmemory-collector:9411
+              value: jaeger-all-in-one-inmemory-agent:6831
           livenessProbe:
             tcpSocket:
               port: 9999
