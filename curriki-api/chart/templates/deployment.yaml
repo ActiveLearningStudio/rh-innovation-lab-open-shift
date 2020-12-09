@@ -4,7 +4,7 @@ apiVersion: apps/v1
 metadata:
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api-fpm.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api-fpm\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api-fpm.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api-fpm-prometheus\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"laravel-echo-server\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"artisan-queue-worker\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api-fpm.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api-fpm\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api-fpm.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api-fpm-prometheus\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"curriki-api\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.containers[?(@.name==\"laravel-echo-server\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPath":"spec.template.spec.initContainers[?(@.name==\"init-container\")].image"},{"from":{"kind":"ImageStreamTag","name":"{{ include "curriki-api.fullname" . }}:{{ .Values.image_version }}"},"fieldPth":"spec.template.spec.containers[?(@.name==\"artisan-queue-worker\")].image"}]
   name: {{ include "curriki-api.fullname" . }}
   labels:
     {{- include "curriki-api.labels" . | nindent 4 }}
@@ -41,6 +41,9 @@ spec:
             name: h5p-storage
       containers:
         - name: curriki-api-fpm
+          env:
+            - name: jaeger_service
+              value: jaeger-all-in-one-inmemory-collector:9411
           livenessProbe:
             tcpSocket:
               port: 9999
