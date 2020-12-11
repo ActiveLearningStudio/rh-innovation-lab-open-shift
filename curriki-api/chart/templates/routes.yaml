@@ -11,11 +11,14 @@ metadata:
 spec:
   path: /api
   port:
-    targetPort: 8000-tcp
+    targetPort: 8443-tcp
   to:
     kind: Service
     name: {{ include "curriki-api.fullname" . }}
     weight: 100
+  tls:
+    insecureEdgeTerminationPolicy: None
+    termination: reencrypt
   wildcardPolicy: None
 ---
 apiVersion: route.openshift.io/v1
@@ -27,11 +30,14 @@ metadata:
 spec:
   path: /storage
   port:
-    targetPort: 8000-tcp
+    targetPort: 8443-tcp
   to:
     kind: Service
     name: {{ include "curriki-api.fullname" . }}
     weight: 100
+  tls:
+    insecureEdgeTerminationPolicy: None
+    termination: reencrypt
   wildcardPolicy: None
 ---
 apiVersion: route.openshift.io/v1

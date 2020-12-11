@@ -31,8 +31,8 @@ spec:
         livenessProbe:
           httpGet:
             path: /
-            port: 8080
-            scheme: HTTP
+            port: 8443
+            scheme: HTTPS
           timeoutSeconds: 1
           periodSeconds: 10
           successThreshold: 1
@@ -40,8 +40,8 @@ spec:
         readinessProbe:
           httpGet:
             path: /
-            port: 8080
-            scheme: HTTP
+            port: 8443
+            scheme: HTTPS
           timeoutSeconds: 1
           periodSeconds: 10
           successThreshold: 1
@@ -49,8 +49,35 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /etc/nginx/certs/tls.crt
+          name: tls-crt
+          subPath: tls.crt
+        - mountPath: /etc/nginx/certs/tls.key
+          name: tls-key
+          subPath: tls.key
+        - mountPath: /etc/nginx/certs/ca.crt
+          name: ca-crt
+          subPath: ca.crt
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: curriki-ui
+        name: curriki-ui-env
+      - name: tls-crt
+        secret:
+          defaultMode: 420
+          secretName: curriki-ui-tls
+      - name: tls-key
+        secret:
+          defaultMode: 420
+          secretName: curriki-ui-tls
+      - name: ca-crt
+        secret:
+          defaultMode: 420
+          secretName: curriki-ui-tls-ca
