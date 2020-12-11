@@ -33,11 +33,11 @@ spec:
             defaultMode: 420
             secretName: curriki-api-echo-server
         - name: tls-crt
-            secret:
+          secret:
             defaultMode: 420
             secretName: curriki-api-tls
         - name: tls-key
-            secret:
+          secret:
             defaultMode: 420
             secretName: curriki-api-tls
       initContainers:
