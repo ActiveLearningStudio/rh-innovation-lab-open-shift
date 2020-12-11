@@ -92,4 +92,23 @@ $(sed 's/^/      /' le-ca.pem)
     weight: 100
   wildcardPolicy: None
 EOF
+
+oc replace -f - <<EOF
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: curriki-api-socket
+spec:
+  host: ${HOST}
+  path: /socket.io
+  port:
+    targetPort: 6001-tcp
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: curriki-api
+    weight: 100
+  wildcardPolicy: None
+EOF
 ```
