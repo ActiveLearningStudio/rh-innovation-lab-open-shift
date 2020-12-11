@@ -54,4 +54,7 @@ spec:
     kind: Service
     name: {{ include "curriki-api.fullname" . }}
     weight: 100
+  tls:
+    termination: edge
+
   wildcardPolicy: None
