@@ -37,6 +37,7 @@ applications:
         - group: apps
           kind: Deployment
           jsonPointers:
+            - /spec/replicas
             - /spec/template/spec/initContainers/0/image
             - /spec/template/spec/containers/0/image
             - /spec/template/spec/containers/1/image
@@ -69,6 +70,7 @@ applications:
         - group: apps
           kind: Deployment
           jsonPointers:
+            - /spec/replicas
             - /spec/template/spec/initContainers/0/image
             - /spec/template/spec/containers/0/image
             - /spec/template/spec/containers/1/image

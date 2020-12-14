@@ -9,7 +9,7 @@ metadata:
   labels:
     {{- include "curriki-api.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicas.min }}
   selector:
     matchLabels:
     {{- include "curriki-api.selectorLabels" . | nindent 6 }}

@@ -1,0 +1,23 @@
+{{- if (eq .Values.hpa.enabled true) }}
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "curriki-api.fullname" . }}
+  labels:
+    {{- include "curriki-api.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: v1
+    kind: DeploymentConfig
+    name: {{ include "curriki-api.fullname" . }}
+  minReplicas: {{ .Values.replicas.min }}
+  maxReplicas: {{ .Values.replicas.max }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: AverageValue
+          averageValue: 1000m
+{{ end }}
