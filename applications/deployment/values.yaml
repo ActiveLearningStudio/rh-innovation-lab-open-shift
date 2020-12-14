@@ -56,7 +56,6 @@ applications:
     destination: labs-test
     source_ref: main
     values:
-      replicas: 1
       fullnameOverride: curriki-api
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
