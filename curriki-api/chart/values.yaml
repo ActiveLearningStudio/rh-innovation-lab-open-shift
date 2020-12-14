@@ -8,7 +8,7 @@ hpa:
 route: true
 replicas:
   min: 1
-  max: 5
+  max: 10
 image_repository: quay.io
 image_name: curriki-api
 image_namespace: curriki
