@@ -14,10 +14,10 @@ spec:
   minReplicas: {{ .Values.replicas.min }}
   maxReplicas: {{ .Values.replicas.max }}
   metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: AverageValue
-          averageValue: 1000m
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: AverageValue
+        averageValue: 1000m
 {{ end }}
