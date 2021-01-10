@@ -202,10 +202,10 @@ applications:
         enabled: false
       istag:
         enabled: false
-      app_url: http://curriki-admin-labs-dev.apps.curriki.apac-1.rht-labs.com
-      api_url: http://curriki-ui-labs-dev.apps.curriki.apac-1.rht-labs.com/api/api
-      front_end_url: http://curriki-ui-labs-dev.apps.curriki.apac-1.rht-labs.com
-      api_img_url: http://curriki-ui-labs-dev.apps.curriki.apac-1.rht-labs.com/api
+      app_url: http://curriki-admin-labs-dev.apps.rh.currikistudio.org
+      api_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org/api/api
+      front_end_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org
+      api_img_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org/api
     ignore_differences:
       ignoreDifferences:
         - group: apps
@@ -233,10 +233,10 @@ applications:
         enabled: false
       istag:
         enabled: false
-      app_url: http://curriki-admin-labs-test.apps.curriki.apac-1.rht-labs.com
-      api_url: http://curriki-ui-labs-test.apps.curriki.apac-1.rht-labs.com/api/api
-      front_end_url: http://curriki-ui-labs-test.apps.curriki.apac-1.rht-labs.com
-      api_img_url: http://curriki-ui-labs-test.apps.curriki.apac-1.rht-labs.com/api
+      app_url: http://curriki-admin-labs-test.apps.rh.currikistudio.org
+      api_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org/api/api
+      front_end_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org
+      api_img_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org/api
     ignore_differences:
       ignoreDifferences:
         - group: apps
