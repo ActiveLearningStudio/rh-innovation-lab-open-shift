@@ -199,7 +199,7 @@ applications:
       image_name: curriki-admin
       image_version: 0.0.1
       builds:
-        enabled: false
+        enabled: true
       istag:
         enabled: false
       app_url: http://curriki-admin-labs-dev.apps.rh.currikistudio.org
@@ -230,7 +230,7 @@ applications:
       image_name: curriki-admin
       image_version: 0.0.1
       builds:
-        enabled: false
+        enabled: true
       istag:
         enabled: false
       app_url: http://curriki-admin-labs-test.apps.rh.currikistudio.org
