@@ -202,7 +202,7 @@ applications:
         enabled: true
       istag:
         enabled: false
-      app_url: http://curriki-admin-labs-dev.apps.rh.currikistudio.org
+      app_url: https://curriki-admin-labs-dev.apps.rh.currikistudio.org
       api_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org/api/api
       front_end_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org
       api_img_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org/api
@@ -233,7 +233,7 @@ applications:
         enabled: true
       istag:
         enabled: false
-      app_url: http://curriki-admin-labs-test.apps.rh.currikistudio.org
+      app_url: https://curriki-admin-labs-test.apps.rh.currikistudio.org
       api_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org/api/api
       front_end_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org
       api_img_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org/api
