@@ -28,7 +28,7 @@ applications:
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
-        enabled: false
+        enabled: true
       istag:
         enabled: false
       image_version: 1.0.0
@@ -60,7 +60,7 @@ applications:
       image_repository: image-registry.openshift-image-registry.svc:5000
       image_name: curriki-api
       builds:
-        enabled: false
+        enabled: true
       istag:
         enabled: false
       image_version: 1.0.0
@@ -93,7 +93,7 @@ applications:
       image_name: curriki-ui
       image_version: 0.1.1
       builds:
-        enabled: false
+        enabled: true
       istag:
         enabled: false
     ignore_differences:
@@ -123,7 +123,7 @@ applications:
       image_name: curriki-ui
       image_version: 0.1.1
       builds:
-        enabled: false
+        enabled: true
       istag:
         enabled: false
     ignore_differences:
@@ -202,10 +202,10 @@ applications:
         enabled: true
       istag:
         enabled: false
-      app_url: https://curriki-admin-labs-dev.apps.rh.currikistudio.org
-      api_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org/api/api
-      front_end_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org
-      api_img_url: http://curriki-ui-labs-dev.apps.rh.currikistudio.org/api
+      app_url: https://curriki-admin-labs-dev.apps.studio.currikistudio.org.org
+      api_url: http://curriki-ui-labs-dev.apps.studio.currikistudio.org.org/api/api
+      front_end_url: http://curriki-ui-labs-dev.apps.studio.currikistudio.org.org
+      api_img_url: http://curriki-ui-labs-dev.apps.studio.currikistudio.org.org/api
     ignore_differences:
       ignoreDifferences:
         - group: apps
@@ -233,10 +233,10 @@ applications:
         enabled: true
       istag:
         enabled: false
-      app_url: https://curriki-admin-labs-test.apps.rh.currikistudio.org
-      api_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org/api/api
-      front_end_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org
-      api_img_url: http://curriki-ui-labs-test.apps.rh.currikistudio.org/api
+      app_url: https://curriki-admin-labs-test.apps.studio.currikistudio.org.org
+      api_url: http://curriki-ui-labs-test.apps.studio.currikistudio.org.org/api/api
+      front_end_url: http://curriki-ui-labs-test.apps.studio.currikistudio.org.org
+      api_img_url: http://curriki-ui-labs-test.apps.studio.currikistudio.org.org/api
     ignore_differences:
       ignoreDifferences:
         - group: apps
