@@ -6,7 +6,7 @@ spec:
   count: 1
   elasticsearchRef:
     name: my-escluster
-  version: 7.9.3
+  version: 7.10.1
   podTemplate:
     metadata:
       labels:
