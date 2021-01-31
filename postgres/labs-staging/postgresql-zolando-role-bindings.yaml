@@ -14,3 +14,19 @@ subjects:
   - kind: ServiceAccount
     name: operator
     namespace: labs-staging
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: postgres-pod
+  namespace: labs-staging
+subjects:
+  - kind: ServiceAccount
+    name: postgres-pod
+    namespace: labs-staging
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: postgres-pod
+  
