@@ -18,7 +18,7 @@ applications:
     destination: labs-ci-cd
     enabled: true
     source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
-    source_path: ubiquitous-journey/ubiquitous-journey
+    source_path: ubiquitous-journey-latest/ubiquitous-journey
     source_ref: main
     sync_policy: *sync_policy_true
     helm_values:
@@ -27,7 +27,7 @@ applications:
     destination: labs-ci-cd
     enabled: true
     source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
-    source_path: ubiquitous-journey/ubiquitous-journey
+    source_path: ubiquitous-journey-latest/ubiquitous-journey
     source_ref: main
     sync_policy: *sync_policy_true
     helm_values:
@@ -36,7 +36,7 @@ applications:
     destination: labs-ci-cd
     enabled: true
     source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
-    source_path: ubiquitous-journey/ubiquitous-journey
+    source_path: ubiquitous-journey-latest/ubiquitous-journey
     source_ref: main
     sync_policy_automated: false
     helm_values:

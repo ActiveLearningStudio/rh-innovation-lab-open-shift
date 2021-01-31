@@ -16,7 +16,7 @@ spec:
       releaseName: ubiquitous-journey
       valueFiles:
         - values-tooling.yaml
-    path: ubiquitous-journey/ubiquitous-journey
+    path: ubiquitous-journey-latest/ubiquitous-journey
     repoURL: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
     targetRevision: main
   syncPolicy:
@@ -43,7 +43,7 @@ spec:
       releaseName: uj-extras
       valueFiles:
         - values-extratooling.yaml
-    path: ubiquitous-journey/ubiquitous-journey
+    path: ubiquitous-journey-latest/ubiquitous-journey
     repoURL: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
     targetRevision: main
   syncPolicy:
@@ -70,6 +70,6 @@ spec:
       releaseName: uj-day2ops
       valueFiles:
         - values-day2ops.yaml
-    path: ubiquitous-journey/ubiquitous-journey
+    path: ubiquitous-journey-latest/ubiquitous-journey
     repoURL: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
     targetRevision: main
