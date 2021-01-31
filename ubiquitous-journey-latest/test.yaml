@@ -1,0 +1,75 @@
+---
+# Source: ubiquitous-journey/templates/argoapplicationdeploy.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: ubiquitous-journey
+spec:
+  destination:
+    namespace: labs-ci-cd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      releaseName: ubiquitous-journey
+      valueFiles:
+        - values-tooling.yaml
+    path: ubiquitous-journey/ubiquitous-journey
+    repoURL: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - Validate=true
+---
+# Source: ubiquitous-journey/templates/argoapplicationdeploy.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: uj-extras
+spec:
+  destination:
+    namespace: labs-ci-cd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      releaseName: uj-extras
+      valueFiles:
+        - values-extratooling.yaml
+    path: ubiquitous-journey/ubiquitous-journey
+    repoURL: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - Validate=true
+---
+# Source: ubiquitous-journey/templates/argoapplicationdeploy.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: uj-day2ops
+spec:
+  destination:
+    namespace: labs-ci-cd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      releaseName: uj-day2ops
+      valueFiles:
+        - values-day2ops.yaml
+    path: ubiquitous-journey/ubiquitous-journey
+    repoURL: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
+    targetRevision: main

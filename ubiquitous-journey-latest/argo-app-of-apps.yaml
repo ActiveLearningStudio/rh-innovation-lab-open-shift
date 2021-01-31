@@ -1,0 +1,44 @@
+##############
+# 🐙 Argo Sync Policy
+#############
+sync_policy_true: &sync_policy_true
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - Validate=true
+
+##############
+# 🛎 Argo App of Apps. Points to a repo which contains some helm stuff
+#############
+
+applications:
+  - name: ubiquitous-journey
+    destination: labs-ci-cd
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
+    source_path: ubiquitous-journey/ubiquitous-journey
+    source_ref: main
+    sync_policy: *sync_policy_true
+    helm_values:
+      - values-tooling.yaml
+  - name: uj-extras
+    destination: labs-ci-cd
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
+    source_path: ubiquitous-journey/ubiquitous-journey
+    source_ref: main
+    sync_policy: *sync_policy_true
+    helm_values:
+      - values-extratooling.yaml
+  - name: uj-day2ops
+    destination: labs-ci-cd
+    enabled: true
+    source: https://github.com/ActiveLearningStudio/rh-innovation-lab-open-shift
+    source_path: ubiquitous-journey/ubiquitous-journey
+    source_ref: main
+    sync_policy_automated: false
+    helm_values:
+      - values-day2ops.yaml
+
